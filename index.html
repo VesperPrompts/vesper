@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VESPER PROMPTS — Biblioteca Exclusiva</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Sora, Manrope & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Sora"', 'sans-serif'],
+            sans: ['"Manrope"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          colors: {
+            gold: '#E5A93C',
+            'gold-light': '#FDE68A',
+            emeraldNeon: '#10B981',
+            emeraldLight: '#34D399',
+            emeraldGlow: 'rgba(16, 185, 129, 0.45)',
+            brand: {
+              bg: '#080A0E',
+              surface: '#0E121A',
+              card: '#121722',
+              cardBorder: '#1A2232',
+              hoverBorder: '#233046'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    .custom-scroll::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: rgba(8, 10, 14, 0.7);
+      border-radius: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #1C2638;
+      border-radius: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #10B981;
+    }
+
+    /* Glows and aesthetic accents */
+    .glow-emerald {
+      box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.45);
+    }
+    .text-glow-emerald {
+      text-shadow: 0 0 16px rgba(16, 185, 129, 0.55);
+    }
+    .glow-gold {
+      box-shadow: 0 0 18px -3px rgba(229, 169, 60, 0.35);
+    }
+    .gradient-header-badge {
+      background: linear-gradient(135deg, rgba(16,185,129,0.2) 0%, rgba(229,169,60,0.15) 100%);
+    }
+  </style>
+</head>
+
+<body class="bg-brand-bg text-slate-100 min-h-screen font-sans antialiased selection:bg-emeraldNeon selection:text-black pb-28">
+
+  <!-- Toast de Notificação -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3 px-4 py-3 rounded-2xl bg-[#0F1622] border border-emeraldNeon/40 shadow-2xl text-sm font-semibold">
+    <div id="toast-icon" class="w-7 h-7 rounded-full bg-emeraldNeon/20 text-emeraldLight flex items-center justify-center shrink-0">
+      <i data-lucide="check" class="w-4 h-4"></i>
+    </div>
+    <span id="toast-message" class="text-slate-100 font-sans">Texto copiado!</span>
+  </div>
+
+  <!-- Cabeçalho Superior Fixo -->
+  <header class="border-b border-brand-cardBorder/90 bg-brand-bg/95 backdrop-blur-xl sticky top-0 z-40">
+    <div class="max-w-[1780px] mx-auto px-4 sm:px-6 py-4 flex flex-col lg:flex-row items-center justify-between gap-4">
+      
+      <!-- Marca & Subtítulo -->
+      <div class="flex items-center gap-3.5 w-full lg:w-auto">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-emerald-600 via-emeraldNeon to-gold flex items-center justify-center shadow-lg shadow-emerald-500/25 shrink-0">
+          <i data-lucide="sparkles" class="w-5 h-5 text-black"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-display text-xl sm:text-2xl font-extrabold tracking-wider text-emeraldLight text-glow-emerald">
+              VESPER PROMPTS
+            </h1>
+            <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emeraldLight border border-emerald-500/30">
+              119 VÍDEOS
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 font-medium">Biblioteca exclusiva de prompts e produções audiovisuais</p>
+        </div>
+      </div>
+
+      <!-- Barra de Pesquisa e Alternador de Grid -->
+      <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
+        <div class="relative w-full sm:w-80">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Buscar por tópico, título, prompt ou #ID..." 
+            class="w-full pl-10 pr-4 py-2 bg-brand-card border border-brand-cardBorder rounded-xl text-xs sm:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emeraldNeon/70 focus:ring-1 focus:ring-emeraldNeon/40 transition-all"
+          />
+        </div>
+
+        <div class="flex items-center gap-2 self-end sm:self-auto shrink-0">
+          <button 
+            id="grid-toggle-btn"
+            title="Alternar entre Grade Padrão e Grade Ampla"
+            class="px-3.5 py-2 bg-brand-card border border-brand-cardBorder rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:border-emeraldNeon/50 transition-all flex items-center gap-2"
+          >
+            <i data-lucide="layout-grid" class="w-4 h-4 text-emeraldLight"></i>
+            <span id="grid-toggle-text" class="hidden sm:inline">Grade 4 Colunas</span>
+          </button>
+          
+          <div class="px-3.5 py-2 bg-brand-card border border-brand-cardBorder rounded-xl text-xs font-bold text-slate-300 shrink-0">
+            Exibindo: <span id="counter" class="text-emeraldLight font-extrabold">119</span> / 119
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtros de Tópicos / Pastas -->
+    <div class="max-w-[1780px] mx-auto px-4 sm:px-6 py-2.5 border-t border-brand-cardBorder/50 overflow-x-auto custom-scroll flex items-center gap-2">
+      <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 shrink-0 mr-1 flex items-center gap-1">
+        <i data-lucide="folder" class="w-3.5 h-3.5 text-emeraldLight"></i> Tópicos:
+      </span>
+      <button data-category="all" class="topic-chip px-3 py-1 rounded-full text-xs font-bold transition-all bg-emeraldNeon text-black glow-emerald shrink-0">
+        Todos (119)
+      </button>
+      <button data-category="femininos" class="topic-chip px-3 py-1 rounded-full text-xs font-semibold transition-all bg-brand-card border border-brand-cardBorder text-slate-300 hover:border-emeraldNeon/50 shrink-0">
+        🎬 FEMININOS (56)
+      </button>
+      <button data-category="faceless" class="topic-chip px-3 py-1 rounded-full text-xs font-semibold transition-all bg-brand-card border border-brand-cardBorder text-slate-300 hover:border-emeraldNeon/50 shrink-0">
+        🎬 FACELESS (19)
+      </button>
+      <button data-category="pai-mae" class="topic-chip px-3 py-1 rounded-full text-xs font-semibold transition-all bg-brand-card border border-brand-cardBorder text-slate-300 hover:border-emeraldNeon/50 shrink-0">
+        🎬 PAI / MÃE (15)
+      </button>
+      <button data-category="chines" class="topic-chip px-3 py-1 rounded-full text-xs font-semibold transition-all bg-brand-card border border-brand-cardBorder text-slate-300 hover:border-emeraldNeon/50 shrink-0">
+        CHINÊS QUALQUER PRODUTO (7)
+      </button>
+      <button data-category="casal" class="topic-chip px-3 py-1 rounded-full text-xs font-semibold transition-all bg-brand-card border border-brand-cardBorder text-slate-300 hover:border-emeraldNeon/50 shrink-0">
+        🎬 CASAL (6)
+      </button>
+      <button data-category="capinhas" class="topic-chip px-3 py-1 rounded-full text-xs font-semibold transition-all bg-brand-card border border-brand-cardBorder text-slate-300 hover:border-emeraldNeon/50 shrink-0">
+        🎬 CAPINHAS CELULAR (6)
+      </button>
+      <button data-category="masculinos" class="topic-chip px-3 py-1 rounded-full text-xs font-semibold transition-all bg-brand-card border border-brand-cardBorder text-slate-300 hover:border-emeraldNeon/50 shrink-0">
+        🎬 MASCULINOS (6)
+      </button>
+      <button data-category="calcados" class="topic-chip px-3 py-1 rounded-full text-xs font-semibold transition-all bg-brand-card border border-brand-cardBorder text-slate-300 hover:border-emeraldNeon/50 shrink-0">
+        🎬 POV CALÇADOS (4)
+      </button>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="max-w-[1780px] mx-auto px-4 sm:px-6 pt-6">
+    
+    <!-- Mensagem de Vazio -->
+    <div id="empty-state" class="hidden text-center py-24">
+      <div class="w-16 h-16 rounded-3xl bg-brand-card border border-brand-cardBorder flex items-center justify-center mx-auto mb-4 text-slate-500">
+        <i data-lucide="video-off" class="w-8 h-8 text-emeraldLight"></i>
+      </div>
+      <h3 class="text-base font-bold text-slate-200 font-display">Nenhum resultado encontrado</h3>
+      <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Tente buscar por outras palavras-chave ou alterne o tópico acima.</p>
+    </div>
+
+    <!-- Grid de Vídeos -->
+    <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
+      <!-- Injetado dinamicamente via JS -->
+    </div>
+  </main>
+
+  <script>
+    // Coleção completa de todos os 119 vídeos extraídos dos tópicos solicitados
+    const allVideos = [
+      // ==========================================
+      // 1. 🎬 CASAL (6 Vídeos)
+      // ==========================================
+      {
+        id: 1,
+        category: "casal",
+        categoryName: "🎬 CASAL",
+        title: "CTA FINAL: INTERAGEM COM A BLUSA, VIRA DE COSTAS E APONTA PARA BAIXO.",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-02/1788347097583-b0b8c60f-3426-4112-a296-8e8dc9e45d88-1-.mp4",
+        prompt: "Create a single continuous ultra-realistic UGC fitting-room style video.\n\nDuration: 8 seconds\nAspect Ratio: 9:16\nResolution: 8K Ultra HD\nFPS: 30\nCamera: Sony A7R V look, 35mm lens equivalent\nStyle: Authentic TikTok couple fitting room video.\n\nIMPORTANT:\nMaintain EXACTLY the same man, woman, clothing, hairstyles, facial features, body proportions, skin tone, accessories, tattoos, expressions, room, lighting and camera framing from the reference image.\n\nDO NOT change:\n- faces\n- bodies\n- clothing\n- hairstyle\n- environment\n- wardrobe\n- camera angle\n- framing\n- colors\n- product logo\n- outfit details\n\nThe room remains exactly the same throughout the entire video.\n\nLighting:\nWarm ceiling LED lighting combined with a subtle front camera flash effect illuminating only the couple while preserving the natural ambient light in the background.\n\nCamera:\nVertical handheld smartphone recording with very slight natural hand movement.\nNo cinematic movement.\nNo zoom.\nNo cuts.\nNo scene transitions.\n\nVIDEO SCRIPT\n\n0.0–2.0s\nThe couple stands side by side smiling at the mirror. The man lightly smooths the front of his t-shirt while the woman gently adjusts the hem of hers.\n\n2.0–4.5s\nBoth perform a slow, natural quarter turn to show the side fit of their outfits, then return facing the mirror with relaxed smiles.\n\n4.5–6.5s\nThe man gives a subtle thumbs-up toward the mirror while the woman laughs softly and briefly points at the logo on her shirt.\n\n6.5–8.0s\nThey move shoulder to shoulder, smile at the camera reflection and wave naturally before holding a relaxed pose.\n\nMovement:\nNatural human body mechanics.\nRelaxed posture.\nAuthentic couple chemistry.\nSubtle eye contact.\nRealistic fabric movement.\nNatural breathing.\nNormal walking speed.\n\nQuality:\nUltra photorealistic.\nExtremely detailed skin texture.\nNatural pores.\nSharp facial details.\nRealistic hair physics.\nVisible clothing fibers.\nHigh dynamic range.\nProfessional smartphone quality.\n\nNegative Prompt:\nNo outfit changes.\nNo identity changes.\nNo face swapping.\nNo body morphing.\nNo extra fingers.\nNo artifacts.\nNo flickering.\nNo camera shake beyond subtle handheld movement.\nNo slow motion.\nNo exaggerated expressions.\nNo AI look.\nNo object duplication.\nNo background changes.\nsem lipsync",
+        howTo: ""
+      },
+      {
+        id: 2,
+        category: "casal",
+        categoryName: "🎬 CASAL",
+        title: "GANCHO/REFORÇO: INTERAGEM COM A BLUSA E ENTRE SI",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-02/1788347162082-c479f653-d42b-41df-8c7b-1a322d719604-1-.mp4",
+        prompt: "Create a single continuous ultra-realistic UGC fitting-room style video.\n\nDuration: 8 seconds\nAspect Ratio: 9:16\nResolution: 8K Ultra HD\nFPS: 30\nCamera: Sony A7R V look, 35mm lens equivalent\nStyle: Authentic TikTok couple fitting room video.\n\nIMPORTANT:\nMaintain EXACTLY the same man, woman, clothing, hairstyles, facial features, body proportions, skin tone, accessories, tattoos, expressions, room, lighting and camera framing from the reference image.\n\nDO NOT change:\n- faces\n- bodies\n- clothing\n- hairstyle\n- environment\n- wardrobe\n- camera angle\n- framing\n- colors\n- product logo\n- outfit details\n\nThe room remains exactly the same throughout the entire video.\n\nLighting:\nWarm ceiling LED lighting combined with a subtle front camera flash effect illuminating only the couple while preserving the natural ambient light in the background.\n\nCamera:\nVertical handheld smartphone recording with very slight natural hand movement.\nNo cinematic movement.\nNo zoom.\nNo cuts.\nNo scene transitions.\n\nVIDEO SCRIPT\n\n0.0–2.0s\nThe woman gently stretches the sides of her shirt to show the fit while smiling. The man watches her with an approving grin.\n\n2.0–4.5s\nThe man lightly pulls the sleeves of his t-shirt into place and looks at himself in the mirror with a satisfied expression.\n\n4.5–6.5s\nThey look at each other, laugh naturally and briefly compare their outfits with playful pointing gestures toward each other's shirts.\n\n6.5–8.0s\nStanding close together, they face the mirror, smile confidently and end with a relaxed nod toward the camera.\n\nMovement:\nNatural human body mechanics.\nRelaxed posture.\nAuthentic couple chemistry.\nSubtle eye contact.\nRealistic fabric movement.\nNatural breathing.\nNormal walking speed.\n\nQuality:\nUltra photorealistic.\nExtremely detailed skin texture.\nNatural pores.\nSharp facial details.\nRealistic hair physics.\nVisible clothing fibers.\nHigh dynamic range.\nProfessional smartphone quality.\n\nNegative Prompt:\nNo outfit changes.\nNo identity changes.\nNo face swapping.\nNo body morphing.\nNo extra fingers.\nNo artifacts.\nNo flickering.\nNo camera shake beyond subtle handheld movement.\nNo slow motion.\nNo exaggerated expressions.\nNo AI look.\nNo object duplication.\nNo background changes.",
+        howTo: "silenciem o vídeo, adapte o comando para português ou adicionem \"sem fala sem áudio sem lipsync sem textos na tela sem logos sem distorções sem objetos inconsistentes\""
+      },
+      {
+        id: 3,
+        category: "casal",
+        categoryName: "🎬 CASAL",
+        title: "CTA FINAL: INTERAGEM COM A BLUSA, ENTRE SI E FAZ CORAÇÃO COM AS MÃOS",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-02/1788347345108-66867311-bda5-4709-ba4a-fa9fc7d5f830-1-.mp4",
+        prompt: "Create a single continuous ultra-realistic UGC fitting-room style video.\n\nDuration: 8 seconds\nAspect Ratio: 9:16\nResolution: 8K Ultra HD\nFPS: 30\nCamera: Sony A7R V look, 35mm lens equivalent\nStyle: Authentic TikTok couple fitting room video.\n\nIMPORTANT:\nMaintain EXACTLY the same man, woman, clothing, hairstyles, facial features, body proportions, skin tone, accessories, tattoos, expressions, room, lighting and camera framing from the reference image.\n\nDO NOT change:\n- faces\n- bodies\n- clothing\n- hairstyle\n- environment\n- wardrobe\n- camera angle\n- framing\n- colors\n- product logo\n- outfit details\n\nThe room remains exactly the same throughout the entire video.\n\nLighting:\nWarm ceiling LED lighting combined with a subtle front camera flash effect illuminating only the couple while preserving the natural ambient light in the background.\n\nCamera:\nVertical handheld smartphone recording with very slight natural hand movement.\nNo cinematic movement.\nNo zoom.\nNo cuts.\nNo scene transitions.\n\nVIDEO SCRIPT\n\n0.0–2.0s\nBoth stand naturally in front of the mirror. The man crosses his arms confidently while the woman places one hand lightly on her waist, both smiling.\n\n2.0–4.5s\nThey simultaneously uncross their poses and gently smooth their shirts to highlight the fit and fabric.\n\n4.5–6.5s\nThey exchange playful eye contact, laugh together and lean slightly toward each other without changing position.\n\n6.5–8.0s\nThey form a small heart gesture together with their hands, smile warmly at the mirror and finish holding the pose naturally.\n\nMovement:\nNatural human body mechanics.\nRelaxed posture.\nAuthentic couple chemistry.\nSubtle eye contact.\nRealistic fabric movement.\nNatural breathing.\nNormal walking speed.\n\nQuality:\nUltra photorealistic.\nExtremely detailed skin texture.\nNatural pores.\nSharp facial details.\nRealistic hair physics.\nVisible clothing fibers.\nHigh dynamic range.\nProfessional smartphone quality.\n\nNegative Prompt:\nNo outfit changes.\nNo identity changes.\nNo face swapping.\nNo body morphing.\nNo extra fingers.\nNo artifacts.\nNo flickering.\nNo camera shake beyond subtle handheld movement.\nNo slow motion.\nNo exaggerated expressions.\nNo AI look.\nNo object duplication.\nNo background changes.",
+        howTo: ""
+      },
+      {
+        id: 4,
+        category: "casal",
+        categoryName: "🎬 CASAL",
+        title: "CTA FINAL: ANDAM PARA FRENTE, INTERAGE COM A BLUSA E DÁ BEIJO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-02/1788347448234-ef0036b2-beeb-4be2-9b26-f55a8fc48f21-1-.mp4",
+        prompt: "Create a single continuous ultra-realistic UGC fitting-room style video.\n\nDuration: 8 seconds\nAspect Ratio: 9:16\nResolution: 8K Ultra HD\nFPS: 30\nCamera: Sony A7R V look, 35mm lens equivalent\nStyle: Authentic TikTok couple fitting room video.\n\nIMPORTANT:\nMaintain EXACTLY the same man, woman, clothing, hairstyles, facial features, body proportions, skin tone, accessories, tattoos, expressions, room, lighting and camera framing from the reference image.\n\nDO NOT change:\n- faces\n- bodies\n- clothing\n- hairstyle\n- environment\n- wardrobe\n- camera angle\n- framing\n- colors\n- product logo\n- outfit details\n\nThe room remains exactly the same throughout the entire video.\n\nLighting:\nWarm ceiling LED lighting combined with a subtle front camera flash effect illuminating only the couple while preserving the natural ambient light in the background.\n\nCamera:\nVertical handheld smartphone recording with very slight natural hand movement.\nNo cinematic movement.\nNo zoom.\nNo cuts.\nNo scene transitions.\n\nVIDEO SCRIPT\n\n0.0–2.0s\nThe couple walks naturally toward the mirror together. They immediately smile at their reflection, creating an engaging first impression.\n\n2.0–4.5s\nThe man gently smooths the front of his t-shirt while the woman lightly adjusts the hem of hers, naturally highlighting the fit and fabric.\n\n4.5–6.5s\nThey exchange approving smiles. The woman gives a subtle thumbs-up while the man lightly nods and briefly points toward the logo on his shirt.\n\n6.5–8.0s\nThey stand shoulder to shoulder, smile confidently at the mirror and finish with a relaxed pose facing the camera.\n\nMovement:\nSmooth movements.\nContinuous movements.\nNatural human body mechanics.\nRelaxed posture.\nAuthentic couple chemistry.\nSubtle eye contact.\nRealistic fabric movement.\nNatural breathing.\nNormal walking speed.\nEasy to interpolate.\nUGC TikTok Shop style.\n\nQuality:\nUltra photorealistic.\nExtremely detailed skin texture.\nNatural pores.\nSharp facial details.\nRealistic hair physics.\nVisible clothing fibers.\nHigh dynamic range.\nProfessional smartphone quality.\n\nNegative Prompt:\nNo outfit changes.\nNo identity changes.\nNo face swapping.\nNo body morphing.\nNo extra fingers.\nNo artifacts.\nNo flickering.\nNo camera shake beyond subtle handheld movement.\nNo slow motion.\nNo exaggerated expressions.\nNo AI look.\nNo object duplication.\nNo background changes.\nNo speech.\nNo human audio.\nNo lip sync.\nNo on-screen text.\nNo subtitles.\nNo logos.\nNo distortions.\nNo inconsistent objects.",
+        howTo: ""
+      },
+      {
+        id: 5,
+        category: "casal",
+        categoryName: "🎬 CASAL",
+        title: "GANCHO/REFORÇO: ELA DÁ UM PASSO A FRENTE E FAZ INTERAÇÃO COM A BLUSA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-02/1788347545868-871cb21b-8dc9-41dd-a088-218a87a847a0-1-.mp4",
+        prompt: "VIDEO SCRIPT\n\n0.0–2.0s\nThe man lightly stretches the sides of his t-shirt while smiling confidently. The woman immediately looks at him with an impressed smile.\n\n2.0–4.5s\nThe woman steps slightly forward, gently smooths the front of her shirt and slowly turns about 30 degrees to naturally show the fit.\n\n4.5–6.5s\nThey look at each other, laugh naturally and briefly compare their outfits with playful approving gestures.\n\n6.5–8.0s\nThey move closer together, lightly touch shoulders, smile warmly and look back toward the camera together.\n\nMovement:\nSmooth movements.\nContinuous movements.\nNatural human body mechanics.\nRelaxed posture.\nAuthentic couple chemistry.\nSubtle eye contact.\nRealistic fabric movement.\nNatural breathing.\nNormal walking speed.\nEasy to interpolate.\nUGC TikTok Shop style.\n\nQuality:\nUltra photorealistic.\nExtremely detailed skin texture.\nNatural pores.\nSharp facial details.\nRealistic hair physics.\nVisible clothing fibers.\nHigh dynamic range.\nProfessional smartphone quality.\n\nNegative Prompt:\nNo speech.\nNo human audio.\nNo lip sync.\nNo on-screen text.\nNo subtitles.\nNo logos.\nNo distortions.\nNo inconsistent objects.",
+        howTo: ""
+      },
+      {
+        id: 6,
+        category: "casal",
+        categoryName: "🎬 CASAL",
+        title: "GANCHO/REFORÇO: INTERAÇÃO COM A BLUSA E GARGALHADAS",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-02/1788347627970-7b339869-a7b6-46e7-8b6e-1cceb2b5453c-1-.mp4",
+        prompt: "VIDEO SCRIPT\n\n0.0–2.0s\nThe woman gently points toward the man's shirt with a big smile while he looks surprised in a playful, natural way.\n\n2.0–4.5s\nThe man lightly stretches the front of his shirt to show the fit, then the woman repeats the same movement with her own shirt.\n\n4.5–6.5s\nThey exchange warm eye contact, laugh together and simultaneously give a subtle thumbs-up toward the mirror.\n\n6.5–8.0s\nThey naturally walk half a step closer, gently lean their heads toward each other, smile confidently and finish facing the camera.\n\nMovement:\nSmooth movements.\nContinuous movements.\nNatural human body mechanics.\nRelaxed posture.\nAuthentic couple chemistry.\nSubtle eye contact.\nRealistic fabric movement.\nNatural breathing.\nNormal walking speed.\nEasy to interpolate.\nUGC TikTok Shop style.\n\nQuality:\nUltra photorealistic.\nExtremely detailed skin texture.\nNatural pores.\nSharp facial details.\nRealistic hair physics.\nVisible clothing fibers.\nHigh dynamic range.\nProfessional smartphone quality.\n\nNegative Prompt:\nNo outfit changes.\nNo identity changes.\nNo face swapping.\nNo body morphing.\nNo extra fingers.\nNo artifacts.\nNo flickering.\nNo camera shake beyond subtle handheld movement.\nNo slow motion.\nNo exaggerated expressions.\nNo AI look.\nNo object duplication.\nNo background changes.\nNo speech.\nNo human audio.\nNo lip sync.\nNo on-screen text.\nNo subtitles.\nNo logos.\nNo distortions.\nNo inconsistent objects.",
+        howTo: ""
+      },
+
+      // ==========================================
+      // 2. 🎬 FACELESS (19 Vídeos)
+      // ==========================================
+      {
+        id: 7,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: STORYBOARD 8 CENAS SEM ROSTO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787139788697-utfhnx-generate-english-video-prompt-st-202608190841.mp4",
+        prompt: "Gere um prompt em inglês de um vídeo completo de 8 segundos, descrito como um storyboard de 8 cenas sequenciais (~1s cada) que conta uma única história contínua, do início ao fim, terminando com a CTA em que a modelo aponta para baixo (sem falar).\n\nRegras obrigatórias — aplicam-se a TODAS as 8 cenas:\n- A modelo nunca fala e nunca mexe a boca em nenhum momento do vídeo. Lábios permanecem fechados e imóveis do primeiro ao último frame.\n- As transições entre cenas são apenas cortes secos. Sem fades, sem dissolves, sem transições com zoom, sem efeitos cinematográficos, sem motion blur entre os cortes, sem transição com opacidade.\n- Mesma modelo, mesmo figurino, mesma iluminação e mesmo cabelo/maquiagem em todas as 8 cenas, para continuidade visual total.\n- Sem giro de 360° e sem rotação completa do corpo ou da câmera. A modelo permanece sempre voltada para a câmera (variando apenas leves ângulos frontais e de 3/4).\n- O figurino deve ser idêntico ao da imagem de referência — mesma roupa, corte, comprimento, costuras, ferragens (fivelas, zíperes, botões), tecido, cor e acessórios, sem alterações em nenhuma cena.\n- Sem mudança de cor: o look mantém exatamente a cor da imagem de referência em todas as cenas.\n- Sem expressões exageradas (susto, choque, caretas etc.). Manter naturalidade e elegância.\n- A câmera permanece fixa durante todo o vídeo — mesmo ângulo e mesmo enquadramento em todas as cenas (sem movimento de câmera).\n- Foco do look: na peça definida pelo usuário (caso ele especifique). Se for uma peça única como vestido ou macacão, o foco é a peça inteira. Se nada for especificado e o look tiver peças separáveis, o foco é livre (mostra o look inteiro de forma equilibrada).\n- A história deve evoluir de forma progressiva e concluir na cena 8 com a CTA: a modelo apontando firmemente para baixo (em direção ao rodapé do quadro / link abaixo), expressão confiante, boca fechada.\n\nConsistência de duração: cada cena dura ~1 segundo (8 cenas × 1s = 8s).\n\nRoteiro das cenas:\nA modelo faz poses mostrando o look, sem repetir movimentos — por exemplo: esticar a roupa, mostrar o caimento da peça, virar levemente de lado para revelar as costas, mexer o cabelo etc. Na cena final, a modelo se aproxima da câmera e se inclina fazendo o gesto de apontar para baixo (CTA).",
+        howTo: ""
+      },
+      {
+        id: 8,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: PASSO À FRENTE E GIRO 360°",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787140051993-l2bprg-woman-steps-forward-and-spins-202608190846.mp4",
+        prompt: "Vídeo vertical 9:16, duração de 6 segundos, plano contínuo, câmera completamente estática em tripé, sem zoom, sem movimentos ou cortes. A cena acontece em um ambiente interno com iluminação natural suave, sombras realistas e atmosfera cotidiana.\n\n\"A modelo dá um passo à frente e, em seguida, gira o corpo completamente em torno do próprio eixo, deixando o cabelo balançar com o movimento, até voltar a ficar de frente para a câmera.\"\n\nO cenário permanece completamente imóvel durante toda a gravação. A iluminação continua constante, sem variações de exposição. Os movimentos são suaves, orgânicos e naturais, como um momento real capturado espontaneamente no dia a dia. Estética de vídeo UGC autêntico gravado em casa. movimentos suaves, estáveis e humanos. sem fala, sem áudio humano, sem lipsync, sem textos na tela, sem logos, sem distorções, sem objetos inconsistentes, sem cortes, sem câmera lenta. Textura de pele extremamente realista, movimentos humanos naturais, qualidade fotográfica, aparência cinematográfica e totalmente indistinguível de um vídeo gravado por uma pessoa real.",
+        howTo: ""
+      },
+      {
+        id: 9,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: AJUSTE DO CINTO/CORDÃO COM AS DUAS MÃOS",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787139687961-261keb-model-adjusting-belt-buckle-202608190840.mp4",
+        prompt: "Vídeo vertical 9:16, duração de 6 segundos, plano contínuo, câmera completamente estática em tripé, sem zoom, sem movimentos ou cortes. A cena acontece em um ambiente interno com iluminação natural suave, sombras realistas e atmosfera cotidiana.\n\n\"A modelo abaixa o olhar em direção à cintura e ajusta a fivela do cinto/CORDÃO com as duas mãos, centralizando o acessório com um gesto suave e cuidadoso.\"\n\nO cenário permanece completamente imóvel durante toda a gravação. A iluminação continua constante, sem variações de exposição. Os movimentos são suaves, orgânicos e naturais, como um momento real capturado espontaneamente no dia a dia. Estética de vídeo UGC autêntico gravado em casa. movimentos suaves, estáveis e humanos. sem fala, sem áudio humano, sem lipsync, sem textos na tela, sem logos, sem distorções, sem objetos inconsistentes, sem cortes, sem câmera lenta. Textura de pele extremamente realista, movimentos humanos naturais, qualidade fotográfica, aparência cinematográfica e totalmente indistinguível de um vídeo gravado por uma pessoa real.",
+        howTo: ""
+      },
+      {
+        id: 10,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: MEXE NO CABELO E SE APROXIMA DA CÂMERA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787140505236-frhmcq-modelo-caminhando-em-ambiente-in-202608190853.mp4",
+        prompt: "Vídeo vertical 9:16, duração de 6 segundos, plano contínuo, câmera completamente estática em tripé, sem zoom, sem movimentos ou cortes. A cena acontece em um ambiente interno com iluminação natural suave, sombras realistas e atmosfera cotidiana.\n\n\"A modelo dá alguns passos à frente enquanto balança levemente o cabelo para trás com a cabeça, caminhando com confiança e naturalidade até se aproximar da câmera.\"\n\nO cenário permanece completamente imóvel durante toda a gravação. A iluminação continua constante, sem variações de exposição. Os movimentos são suaves, orgânicos e naturais, como um momento real capturado espontaneamente no dia a dia. Estética de vídeo UGC autêntico gravado em casa. movimentos suaves, estáveis e humanos. sem fala, sem áudio humano, sem lipsync, sem textos na tela, sem logos, sem distorções, sem objetos inconsistentes, sem cortes, sem câmera lenta. Textura de pele extremamente realista, movimentos humanos naturais, qualidade fotográfica, aparência cinematográfica e totalmente indistinguível de um vídeo gravado por uma pessoa real.",
+        howTo: ""
+      },
+      {
+        id: 11,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: PASSO LATERAL E RETORNO CAMINHANDO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787139994271-c7s1yt-model-walking-and-turning-indoors-202608190844.mp4",
+        prompt: "Vídeo vertical 9:16, duração de 6 segundos, plano contínuo, câmera completamente estática em tripé, sem zoom, sem movimentos ou cortes. A cena acontece em um ambiente interno com iluminação natural suave, sombras realistas e atmosfera cotidiana.\n\n\"A modelo dá um passo para o lado saindo de quadro parcialmente e volta caminhando de forma natural, girando o corpo em direção à câmera enquanto se desloca.\"\n\nO cenário permanece completamente imóvel durante toda a gravação. A iluminação continua constante, sem variações de exposição. Os movimentos são suaves, orgânicos e naturais, como um momento real capturado espontaneamente no dia a dia. Estética de vídeo UGC autêntico gravado em casa. movimentos suaves, estáveis e humanos. sem fala, sem áudio humano, sem lipsync, sem textos na tela, sem logos, sem distorções, sem objetos inconsistentes, sem cortes, sem câmera lenta. Textura de pele extremamente realista, movimentos humanos naturais, qualidade fotográfica, aparência cinematográfica e totalmente indistinguível de um vídeo gravado por uma pessoa real.",
+        howTo: ""
+      },
+      {
+        id: 12,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: AJUSTE DO SHORT NO CÓS",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787139504257-elvnph-model-adjusting-shorts-at-waist-202608190836.mp4",
+        prompt: "Vídeo vertical 9:16, duração de 6 segundos, plano contínuo, câmera completamente estática em tripé, sem zoom, sem movimentos ou cortes. A cena acontece em um ambiente interno com iluminação natural suave, sombras realistas e atmosfera cotidiana.\n\n\"A modelo leva as duas mãos até a cintura e desliza os dedos suavemente ao longo do cós do short, alisando o tecido próximo ao cinto.\"\n\nO cenário permanece completamente imóvel durante toda a gravação. A iluminação continua constante, sem variações de exposição. Os movimentos são suaves, orgânicos e naturais, como um momento real capturado espontaneamente no dia a dia. Estética de vídeo UGC autêntico gravado em casa. movimentos suaves, estáveis e humanos. sem fala, sem áudio humano, sem lipsync, sem textos na tela, sem logos, sem distorções, sem objetos inconsistentes, sem cortes, sem câmera lenta. Textura de pele extremamente realista, movimentos humanos naturais, qualidade fotográfica, aparência cinematográfica e totalmente indistinguível de um vídeo gravado por uma pessoa real.",
+        howTo: ""
+      },
+      {
+        id: 13,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: CAMINHADA EM CÍRCULO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787140418586-3n87wo-model-walking-in-circle-202608190851.mp4",
+        prompt: "Vídeo vertical 9:16, duração de 6 segundos, plano contínuo, câmera completamente estática em tripé, sem zoom, sem movimentos ou cortes. A cena acontece em um ambiente interno com iluminação natural suave, sombras realistas e atmosfera cotidiana.\n\n\"A modelo caminha em um pequeno círculo dentro do quadro, girando lentamente o corpo enquanto se desloca, mostrando o conjunto de diferentes ângulos em movimento contínuo.\"\n\nO cenário permanece completamente imóvel durante toda a gravação. A iluminação continua constante, sem variações de exposição. Os movimentos são suaves, orgânicos e naturais, como um momento real capturado espontaneamente no dia a dia. Estética de vídeo UGC autêntico gravado em casa. movimentos suaves, estáveis e humanos. sem fala, sem áudio humano, sem lipsync, sem textos na tela, sem logos, sem distorções, sem objetos inconsistentes, sem cortes, sem câmera lenta. Textura de pele extremamente realista, movimentos humanos naturais, qualidade fotográfica, aparência cinematográfica e totalmente indistinguível de um vídeo gravado por uma pessoa real.",
+        howTo: ""
+      },
+      {
+        id: 14,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: INTERAÇÃO COM A BARRA DA BLUSA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787139849055-ebu8d5-model-touching-top-hem-202608190842.mp4",
+        prompt: "Vídeo vertical 9:16, duração de 6 segundos, plano contínuo, câmera completamente estática em tripé, sem zoom, sem movimentos ou cortes. A cena acontece em um ambiente interno com iluminação natural suave, sombras realistas e atmosfera cotidiana.\n\n\"A modelo leva uma das mãos até a barra do top, tocando de leve o tecido próximo à barriga, enquanto mantém o olhar direcionado para baixo, observando o conjunto.\"\n\nO cenário permanece completamente imóvel durante toda a gravação. A iluminação continua constante, sem variações de exposição. Os movimentos são suaves, orgânicos e naturais, como um momento real capturado espontaneamente no dia a dia. Estética de vídeo UGC autêntico gravado em casa. movimentos suaves, estáveis e humanos. sem fala, sem áudio humano, sem lipsync, sem textos na tela, sem logos, sem distorções, sem objetos inconsistentes, sem cortes, sem câmera lenta. Textura de pele extremamente realista, movimentos humanos naturais, qualidade fotográfica, aparência cinematográfica e totalmente indistinguível de um vídeo gravado por uma pessoa real.",
+        howTo: ""
+      },
+      {
+        id: 15,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: MOVIMENTAÇÃO DINÂMICA DO SHORT (8S)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787138866161-i0y5od-model-adjusting-shorts-in-video-202608190825.mp4",
+        prompt: "Vídeo vertical 9:16, 8 segundos, estilo UGC espontâneo para TikTok Shop. Enquadramento do quadril até abaixo do pescoço, rosto e boca nunca aparecem. A modelo começa de frente com o peso em uma perna e uma mão na cintura. Rapidamente passa as duas mãos pelo cós do short, ajustando levemente a cintura, depois desliza uma mão pela lateral do short enquanto a outra permanece na cintura. Ela desloca o quadril para o lado e gira aproximadamente 40° em direção à câmera, mostrando o caimento lateral das peças, sem mostrar as costas. Depois retorna parcialmente para a frente, cruza as mãos rapidamente na altura do quadril e termina com uma mão na cintura. Movimento contínuo, energético, natural e espontâneo, como se estivesse mostrando os detalhes da roupa para quem assiste.",
+        howTo: ""
+      },
+      {
+        id: 16,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: GIRO E JOGA CABELO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787139584834-ibvkgz-modelo-gira-e-joga-cabelo-202608190838.mp4",
+        prompt: "Vídeo vertical 9:16, duração de 6 segundos, plano contínuo, câmera completamente estática em tripé, sem zoom, sem movimentos ou cortes. A cena acontece em um ambiente interno com iluminação natural suave, sombras realistas e atmosfera cotidiana.\n\n\"A modelo gira o corpo em um movimento contínuo e natural, jogando levemente o cabelo para trás com uma leve inclinação da cabeça enquanto se volta de frente para a câmera.\"\n\nO cenário permanece completamente imóvel durante toda a gravação. A iluminação continua constante, sem variações de exposição. Os movimentos são suaves, orgânicos e naturais, como um momento real capturado espontaneamente no dia a dia. Estética de vídeo UGC autêntico gravado em casa. movimentos suaves, estáveis e humanos. sem fala, sem áudio humano, sem lipsync, sem textos na tela, sem logos, sem distorções, sem objetos inconsistentes, sem cortes, sem câmera lenta. Textura de pele extremamente realista, movimentos humanos naturais, qualidade fotográfica, aparência cinematográfica e totalmente indistinguível de um vídeo gravado por uma pessoa real.",
+        howTo: ""
+      },
+      {
+        id: 17,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: LEVE GIRO LATERAL E PUSH NA BARRA DO SHORT",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787139245672-9j0z7p-model-showcasing-clothing-202608190832.mp4",
+        prompt: "Video vertical 9:16, duração de 8 segundos, estética UGC TikTok Shop extremamente realista. Modelo em meio corpo, enquadrada do quadril até abaixo do pescoço, sem rosto ou boca visíveis. Ela começa levemente de lado, aproximadamente 30°, com um ombro mais próximo da câmera. Ajeita rapidamente a manga da camiseta com uma mão, depois passa a mão pelo tecido do tórax de cima para baixo, evidenciando textura e caimento. Em seguida coloca a mão na cintura, gira o quadril suavemente e muda o peso de uma perna para outra. Faz uma pequena rotação de aproximadamente 35° para mostrar o caimento lateral do conjunto, sem virar de costas. Termina puxando levemente a barra da camiseta e soltando. Movimentos rápidos porém naturais, sem ficar parada, linguagem corporal de influencer mostrando a roupa.",
+        howTo: ""
+      },
+      {
+        id: 18,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "GANCHO/REFORÇO: GIRO PARA PERFIL E MÃO NO QUADRIL",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787139350316-5hi9ps-model-turning-to-side-profile-202608190834.mp4",
+        prompt: "Vídeo vertical 9:16, duração de 6 segundos, plano contínuo, câmera completamente estática em tripé, sem zoom, sem movimentos ou cortes. A cena acontece em um ambiente interno com iluminação natural suave, sombras realistas e atmosfera cotidiana.\n\n\"A modelo gira o corpo lentamente até ficar de perfil para a câmera e apoia uma das mãos suavemente sobre o quadril, mantendo a postura ereta e natural.\"\n\nO cenário permanece completamente imóvel durante toda a gravação. A iluminação continua constante, sem variações de exposição. Os movimentos são suaves, orgânicos e naturais, como um momento real capturado espontaneamente no dia a dia. Estética de vídeo UGC autêntico gravado em casa. movimentos suaves, estáveis e humanos. sem fala, sem áudio humano, sem lipsync, sem textos na tela, sem logos, sem distorções, sem objetos inconsistentes, sem cortes, sem câmera lenta. Textura de pele extremamente realista, movimentos humanos naturais, qualidade fotográfica, aparência cinematográfica e totalmente indistinguível de um vídeo gravado por uma pessoa real.",
+        howTo: ""
+      },
+      {
+        id: 19,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "PUSH NO CÓS E BARRA DO SHORT (JSON)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-10-06/1791301141195-document_5055676334211075515.mp4",
+        prompt: "{\n  \"sequence_of_movements\": [\n    {\n      \"timestamp\": \"00:00 - 00:02\",\n      \"action\": \"Grasping top waistband with both hands and pulling outwards twice to show stretch\",\n      \"posture\": \"Standing upright, elbows bent\"\n    },\n    {\n      \"timestamp\": \"00:02 - 00:04\",\n      \"action\": \"Moving hands down to the lower hem of the shorts and pulling outwards twice\",\n      \"posture\": \"Slight forward torso bend\"\n    },\n    {\n      \"timestamp\": \"00:04 - 00:05\",\n      \"action\": \"Smoothing palms over the front fabric of the shorts in a downward motion\",\n      \"posture\": \"Returning to neutral standing position\"\n    }\n  ]\n}",
+        howTo: "USE A IMAGEM JÁ PRONTA"
+      },
+      {
+        id: 20,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "AGACHAMENTO E AJUSTE NA BLUSA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-10-06/1791301249820-document_5055676334211075514.mp4",
+        prompt: "{\n  \"sequence_of_movements\": [\n    {\n      \"timestamp\": \"00:00 - 00:06\",\n      \"action\": \"Repeating 3 times continuously: starting in a slight squat with hands on knees and head tilted up, then standing up straight while sliding hands up to the waist\",\n      \"facial_expression\": \"Looking forward, neutral face, mouth closed\"\n    }\n  ]\n}",
+        howTo: "USE A IMAGEM PRONTA DA MODELO"
+      },
+      {
+        id: 21,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "CORRENDO (AQUECIMENTO ESTÁTICO)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-10-06/1791301318338-document_5055676334211075513.mp4",
+        prompt: "{\n  \"sequence_of_movements\": [\n    {\n      \"timestamp\": \"00:00 - 00:06\",\n      \"action\": \"Fast-paced continuous station jog warm-up in place, looking directly at the camera with mouth closed\",\n      \"details\": \"Rapidly alternating feet on the toes with high-knee movement, fluidly swinging arms at 90-degree angle without pausing or stopping\"\n    },\n    {\n      \"timestamp\": \"00:06 - 00:08\",\n      \"action\": \"Instantly stopping the jog into a still standing position facing the camera\",\n      \"facial_expression\": \"Direct eye contact, neutral face, completely silent\"\n    }\n  ]\n}",
+        howTo: "USE A IMAGEM PRONTA DA MODELO"
+      },
+      {
+        id: 22,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "AGACHAMENTO CONTROLADO COM MÃOS NO PEITO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-10-06/1791301393165-document_5055676334211075512.mp4",
+        prompt: "{\n  \"sequence_of_movements\": [\n    {\n      \"timestamp\": \"00:00 - 00:06\",\n      \"action\": \"Standing facing forward, looking directly into the camera with a neutral face and mouth closed, executing 4 continuous controlled bodyweight squats\",\n      \"hand_position\": \"Hands clasped together at chest height with elbows bent and pointing slightly outwards\",\n      \"details\": \"Bending knees and lowering hips deeply while maintaining clasped hands at chest level, then extending legs to return to standing upright, repeated 4 times\"\n    },\n    {\n      \"timestamp\": \"00:06 - 00:08\",\n      \"action\": \"Taking 2 steps forward closer to the camera and stopping in an upright standing position\",\n      \"hand_position\": \"Lowering hands naturally to the sides of the body\",\n      \"facial_expression\": \"Looking directly at the camera, mouth closed, no speaking\"\n    }\n  ]\n}",
+        howTo: "USE A IMAGEM PRONTA DA MODELO"
+      },
+      {
+        id: 23,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "PASSA A MÃO NA ROUPA E DÁ UM PUSH (ESPELHO SELFIE)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-10-06/1791301709319-tcs-video-gen_9d52110f-d529-41af-adbb-42a0cfc0c722.mp4",
+        prompt: "{\n  \"type\": \"ultra_photorealistic_mirror_selfie_video\",\n  \"output\": {\n    \"duration_seconds\": 10,\n    \"aspect_ratio\": \"9:16\",\n    \"orientation\": \"vertical\",\n    \"quality\": \"maximum_ultra_photorealism\"\n  },\n  \"scene\": {\n    \"description\": \"A female model records herself in front of a mirror with a smartphone. The video must look like a real mirror selfie captured on a high-quality phone, with natural lighting, realistic anatomy, authentic reflections and realistic fabric physics.\"\n  },\n  \"camera\": {\n    \"style\": \"mirror selfie\",\n    \"movement\": \"subtle natural handheld motion only\",\n    \"instruction\": \"Keep the framing stable. The model must remain in the same spot and must not walk forward, backward or sideways.\"\n  },\n  \"action\": {\n    \"0_3s\": \"Facing the mirror, she holds the phone with one hand. With the free hand, she gently slides her hand over the upper garment, such as a top or bodysuit, naturally smoothing and touching the fabric.\",\n    \"3_6s\": \"She moves the same hand downward and gently passes it over the fabric of the pants, skirt or lower garment, showing texture and fit.\",\n    \"6_8s\": \"She gently pulls the fabric of the upper garment outward slightly to demonstrate elasticity. The pull must be subtle, soft and controlled, never aggressive.\",\n    \"8_10s\": \"She smoothly turns her body to the side while remaining in the same position, showing the side fit and silhouette of the outfit.\"\n  },\n  \"fabric\": {\n    \"instruction\": \"Use physically realistic fabric behavior with natural stretch, tension, compression, folds, drape and movement. The garment must react naturally when touched or gently pulled.\"\n  },\n  \"lighting\": {\n    \"instruction\": \"Lighting must match the environment and fall naturally on the model, skin, clothing and surroundings, with realistic shadows, highlights, reflections and mirror interaction.\"\n  },\n  \"realism\": {\n    \"requirements\": [\"natural body movement\",\"realistic hand movement\",\"realistic skin texture\",\"realistic hair movement\",\"realistic fabric physics\",\"accurate anatomy\",\"authentic smartphone video\",\"natural mirror reflection\"],\n    \"avoid\": [\"walking\",\"robotic movement\",\"aggressive fabric pulling\",\"distorted hands\",\"distorted anatomy\",\"plastic skin\",\"CGI appearance\",\"fake reflections\",\"unnatural fabric behavior\"]\n  }\n}",
+        howTo: "USE A IMAGEM PRONTA DA MODELO"
+      },
+      {
+        id: 24,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "PROMPT PARA QUALQUER PEÇA INFERIOR (ÂNGULO BAIXO)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-10-14/1791993336908-Model_displaying_wide_leg_pants_20261014125519.mp4",
+        prompt: "Vertical 9:16, 8 segundos, sensação estática de smartphone na mão, ângulo baixo da câmera, enquadramento do peito aos sapatos como se a câmera estivesse no chão, sem rosto. A modelo exibe a calça de pernas largas: (0-2s) fica de frente para a câmera com uma mão no bolso;\n(2-4s) segura as laterais da calça/saia e as puxa levemente para fora para mostrar a largura da perna, o tecido balançando naturalmente; (4-6s) vira-se para o lado mostrando o perfil e o caimento do tecido; (6-10s) faz alguns movimentos para demonstrar a peça e conforto.\n\nLuz natural quente da janela, física realista do tecido, movimento natural e suave, roupa e corpo consistentes do início ao fim, sem cortes de câmera. Prompt negativo (se a ferramenta tiver): rosto, texto, marca d'água, logotipo, dedos extras, peça distorcidas, tecido empenado, embaçado.",
+        howTo: "USE A IMAGEM PRONTA DA MODELO"
+      },
+      {
+        id: 25,
+        category: "faceless",
+        categoryName: "🎬 FACELESS",
+        title: "FACELESS DINÂMICO PARA QUALQUER PEÇA (CORTES RÁPIDOS)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-10-16/1792147627801-gemini_generated_video_030a0732.mp4",
+        prompt: "Create an extremely dynamic, fast-paced FACELESS vertical 9:16 video using EXACTLY the product from the reference images.\nThe video takes place in a modern, cozy bedroom. STRICT CAMERA RULE: never frame above the woman’s shoulders. Her entire head must remain completely outside the frame in EVERY shot. No face, partial face, chin, mirrors or reflections showing her face.\nAll shots must be shoulders-down, waist-down or close-ups of the product.\nUse several rapid micro-scenes of 0.5–1.5 seconds. The woman’s physical movements must also be fast, energetic and accelerated, not just the editing. She quickly walks, turns, changes poses, pulls and stretches the fabric with both hands, performs a quick squat, stands back up and dynamically shows the product from different angles.\nThroughout the micro-scenes, change the product color using ONLY the colors from the reference images, always keeping exactly the same product design.\nWhile demonstrating it, she speaks naturally in Brazilian Portuguese about the product, mentioning only characteristics that can be accurately identified from the references. Do not invent materials or benefits.\nVery fast body movements, rapid transitions, quick cuts, dynamic camera movement and constant action. No slow or relaxed movements, no static poses or long pauses. Realistic fabric physics. No slow motion, text or overlays.",
+        howTo: "USE A IMAGEM PRONTA DA MODELO, ACRESCENTE NO FINAL DO PROMPT O \"FOCO NA PEÇA\" (EX: \"FOCO NA BLUSA\")"
+      },
+
+      // ==========================================
+      // 3. CHINÊS: QUALQUER PRODUTO (7 Vídeos)
+      // ==========================================
+      {
+        id: 26,
+        category: "chines",
+        categoryName: "CHINÊS QUALQUER PRODUTO",
+        title: "UGC: MODELO COM MULETA E CAMINHÃO ABRINDO A TRASEIRA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-21/1790017495859-Woman_using_crutches_collects_pr-_20260921160425.mp4",
+        prompt: "Crie um vídeo vertical 9:16, com estética realista, dinâmica e acelerada, usando EXATAMENTE o produto da imagem de referência como fonte visual absoluta.\n\nPRODUTO — FIDELIDADE TOTAL\n\nO body da imagem um anexada ser preservado com fidelidade integral durante todo o vídeo.\n\nManter exatamente:\nformato; proporções; cor; materiais; textura; construção; identidade visual; detalhes característicos; aparência real do produto.\n\nCENA E CONTEXTO\nUma mulher com as duas pernas engessadas está se deslocando naturalmente com suas muletas por uma rua residencial brasileira.\nAtrás dela, a uma distância natural, já há um caminhão de entrega em movimento.\n\nAÇÃO PRINCIPAL — TUDO ACONTECE MUITO RÁPIDO\nO caminhão passa por um buraco na rua. Com o impacto, a porta traseira se abre sozinha e muitas unidades do produto caem na rua.\nA mulher ouve o barulho, olha para trás, solta as muletas, corre até o monte, pega uma unidade e corre de volta em direção à câmera.\n\nCONTINUIDADE: Plano contínuo sem cortes ou teletransporte até ela parar na frente da câmera e falar a copy de venda natural.",
+        howTo: "USE A IMAGEM DA MODELO COM A ROUPA + O PROMPT"
+      },
+      {
+        id: 27,
+        category: "chines",
+        categoryName: "CHINÊS QUALQUER PRODUTO",
+        title: "UGC: CANECA DE NATAL (TESTE DE RESISTÊNCIA)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-21/1790033021919-Usar_EXATAMENTE_o_produto_pr.mp4",
+        prompt: "- Usar EXATAMENTE o produto presente na imagem de referência.\n- Preservar integralmente aparência, cor, formato, embalagem, materiais, proporções, textura, acabamento, logotipo, etiquetas e todos os detalhes visíveis.\n- Analisar automaticamente o tipo de produto e adaptar todas as ações à sua função e características reais.\n- Vídeo vertical 9:16 extremamente dinâmico, rápido, energético e visualmente envolvente.\n- Abertura obrigatória com UM ÚNICO teste de resistência impactante envolvendo o produto.\n- Depois do gancho, criar várias microcenas com duração entre 0,5 e 1,5 segundo com a mulher demonstrando o produto.\n- A mulher fala durante TODO o vídeo em português do Brasil com fala rápida, natural, espontânea e convincente.\n- Estrutura geral: GANCHO DE RESISTÊNCIA → cortes rápidos → demonstração → detalhes → diferentes formas de uso → apresentação final do produto.",
+        howTo: "USE A IMAGEM DO PRODUTO + O PROMPT."
+      },
+      {
+        id: 28,
+        category: "chines",
+        categoryName: "CHINÊS QUALQUER PRODUTO",
+        title: "POV: ÁRVORE DE NATAL (APENAS MÃOS)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-21/1790033764249-Usar_EXATAMENTE_o_produto_pr-1-.mp4",
+        prompt: "- Usar EXATAMENTE o produto presente na imagem de referência.\n- Preservar integralmente aparência, cor, formato, embalagem, materiais, proporções, textura e acabamento.\n- GERE UM VÍDEO POV, APENAS MÃOS APRESENTANDO O PRODUTO.\n- Teste de resistência no primeiro segundo seguido de cortes rápidos mostrando montagem e iluminação.\n- Sem textos ou legendas artificiais, iluminação realista e coerente.",
+        howTo: "USE A IMAGEM DO PRODUTO + O PROMPT."
+      },
+      {
+        id: 29,
+        category: "chines",
+        categoryName: "CHINÊS QUALQUER PRODUTO",
+        title: "UGC: FÁBRICA / LINHA DE PRODUÇÃO COM CORO EM UNÍSSONO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-23/1790161591275-Workers_speaking_on_factory_conv-_20260923075237.mp4",
+        prompt: "Use the uploaded first frame as an immutable visual anchor.\nCreate an 8-second ultra-photorealistic vertical factory video as a direct continuation of the uploaded image.\nFORMAT: Vertical 9:16, 8 seconds, 24 fps, one continuous take, no cuts.\nPRODUCT LOCK: Preserve every visible product unit exactly as shown on the conveyor belt.\nCONVEYOR ACTION: The conveyor moves slowly toward the collection box. One unit drops in.\nWORKERS: Preserve exactly four adult workers, two on each side. They smile, point toward the products and speak in loud, energetic unison:\n[CANECA BOA PARA A FAMÍLIA TODA NESSE NATAL QUASE DE GRAÇA, APROVEITE ANTES QUE ESGOTE.]\nAudio: Factory ambience, conveyor motor, distinct human speech in urgent commercial tone without melody.",
+        howTo: "USAR A IMAGEM PRONTA + PROMPT"
+      },
+      {
+        id: 30,
+        category: "chines",
+        categoryName: "CHINÊS QUALQUER PRODUTO",
+        title: "PROMPT PARA MODELO MEIO CORPO (QUALQUER ROUPA)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-24/1790277829832-Faceless_video_demonstration_pro-_20260924070559.mp4",
+        prompt: "Crie um vídeo vertical (9:16) extremamente dinâmico e acelerado, sem mostrar o rosto, utilizando EXATAMENTE o produto das imagens de referência.\nO vídeo se passa em um quarto moderno e aconchegante. REGRA RÍGIDA DE CÂMERA: nunca enquadre acima dos ombros da mulher. Toda a cabeça dela deve permanecer completamente fora do quadro em TODAS as tomadas. Nada de rosto, rosto parcial ou reflexos.\nTodas as tomadas devem focar da altura dos ombros para baixo ou ser closes do produto.\nUtilize várias microcenas rápidas (0,5 a 1,5 segundos) com movimentos energéticos e trocas de cores do produto baseadas na referência.",
+        howTo: "USE A IMAGEM DA MODELO JÁ COM A ROUPA"
+      },
+      {
+        id: 31,
+        category: "chines",
+        categoryName: "CHINÊS QUALQUER PRODUTO",
+        title: "POV PARA QUALQUER PRODUTO (10S ASMR LUXO)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-10-09/1791555285423-Commercial_ASMR_produto_fotorrea-_720p_20261009111427.mp4",
+        prompt: "Crie um comercial premium de produto com duração total de 10 segundos, estética ASMR ultrafotorrealista, formato horizontal 16:9 ou vertical 9:16.\nUse EXATAMENTE o produto da imagem um de referência como fonte visual absoluta.\nO vídeo deve permanecer exclusivamente em POV de primeira pessoa. Apenas duas mãos femininas delicadas interagem com o produto sobre uma mesa de mármore.\nEstrutura: 0-1s Queda controlada e captura; 1-2s Sentir o material macro; 2-3s Resposta física/compressão; 3-4s Macro de textura; 4-5s Ação funcional real; 5-6.7s Tracking de design; 6.7-7.6s Rotação com speed ramp. Estética de som ASMR cristalino.",
+        howTo: "USE O PRINT DO PRODUTO + UMA IMAGEM DE REFERÊNCIA DE AMBIENTE"
+      },
+      {
+        id: 32,
+        category: "chines",
+        categoryName: "CHINÊS QUALQUER PRODUTO",
+        title: "POV PARA QUALQUER PRODUTO (MÃOS BOUTIQUE)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-10-09/1791555631469-Commercial_video_product_ASMR_cr-_20261009112016.mp4",
+        prompt: "Comercial ASMR fotorrealista em primeira pessoa (POV). Duas mãos femininas manuseiam com delicadeza e precisão o produto da referência sobre uma bancada refinada de boutique.\nDemonstração tátil de acabamento, detalhes de costura/encaixes mecânicos e teste de flexibilidade natural com iluminação de estúdio contrastada e elegante.",
+        howTo: "USE APENAS O PRINT DO PRODUTO"
+      },
+
+      // ==========================================
+      // 4. 🎬 POV CALÇADOS (4 Vídeos)
+      // ==========================================
+      {
+        id: 33,
+        category: "calcados",
+        categoryName: "🎬 POV CALÇADOS",
+        title: "USE A IMAGEM PRONTA DO PRODUTO (CHINELO/SANDÁLIA POV)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786238507352-58zrcp-document-5150305385843788183.mp4",
+        prompt: "A mão segura o chinelo com carinho e o aproxima devagar da câmera, como se estivesse admirando os detalhes, virando levemente de um lado para o outro sem deixar o solado aparecer. O pé no fundo se mexe de forma solta e natural, os dedos relaxam e se movem um pouco, o tornozelo gira de leve como quem está experimentando o calçado com calma, sem pressa. Ao fundo, a cortina fina balança suavemente, como se uma brisa gostosa estivesse entrando pela janela num dia tranquilo de sol. A cena tem uma sensação real, caseira, de quarto aconchegante, sem parecer ensaiada.",
+        howTo: ""
+      },
+      {
+        id: 34,
+        category: "calcados",
+        categoryName: "🎬 POV CALÇADOS",
+        title: "VÍDEO COM NARRAÇÃO (TÊNIS CONFORTÁVEL)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-04/1788524941440-ela_demostra_o_produto_de_202607022142-1-.mp4",
+        prompt: "Ela demonstra o produto de forma natural e sutil apenas demonstrando ele para a câmera, mostrando a qualidade. Não mudar nada no produto. Produto precisa ser idêntico à imagem.\nFala em português: Meninas, olha que lindo esse tênis! Esse foi um daqueles achadinhos que valem muito a pena. Além de lindo, ele é super confortável e combina com tudo. Sério, eu tô apaixonada, vou usar todo dia agora!",
+        howTo: "IMAGEM DO PRODUTO + PROMPT (MUDE APENAS A NARRAÇÃO)"
+      },
+      {
+        id: 35,
+        category: "calcados",
+        categoryName: "🎬 POV CALÇADOS",
+        title: "GANCHO/REFORÇO: EXPERIMENTANDO SANDÁLIA / CALÇADO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-21/1790032460003-experimente_a_sandalia_deta.mp4",
+        prompt: "/experimente a sandália / detalhes do produto bloqueados",
+        howTo: "USE A IMAGEM DO PRODUTO + PROMPT. CASO NÃO FOR \"SANDÁLIA\" MUDE PARA O NOME DO CALÇADO QUE APRESENTARÁ"
+      },
+      {
+        id: 36,
+        category: "calcados",
+        categoryName: "🎬 POV CALÇADOS",
+        title: "ENSAIO FOTOGRÁFICO / PUBLICITÁRIO PARA CALÇADOS",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-10-02/1790960154452-gemini_generated_video_039700d3.mp4",
+        prompt: "Ensaio fotográfico/publicitário, estilo cinematográfico, apenas música, sem modelo. Mantenha fielmente as características e detalhes do produto da imagem anexada.",
+        howTo: "USE O PRINT DO PRODUTO"
+      },
+
+      // ==========================================
+      // 5. 🎬 PAI / MÃE (15 Vídeos)
+      // ==========================================
+      {
+        id: 37,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "CAMINHANDO ATÉ A CÂMERA (PAI E FILHA)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-30/1788124826929-Man_and_woman_walking_202607311323.mp4",
+        prompt: "Anime o quadro fornecido. Preserve a identidade, o produto, o ambiente, a iluminação e a composição exatamente como exibidos, com movimento natural e continuidade.\nEnquadramento de corpo inteiro de frente, câmera totalmente estática em tripé fixo, sem zoom, sem cortes. Formato vertical 9:16.\nAção: o homem dá alguns passos relaxados em direção à câmera, com a filha permanecendo próxima a ele e mantendo o braço em volta de sua cintura. A camiseta dele move-se naturalmente com o caimento real do algodão.\nSem fala, sem legendas, ruído suave ambiente de cozinha residencial.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 38,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "INTERAÇÃO COM A BLUSA DO PAI/MÃE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788138389606-Man_and_daughter_in_kitchen_202607311324.mp4",
+        prompt: "Animate the provided frame. Preserve identity, product, environment, lighting and composition exactly as shown, with natural motion and continuity.\nFull-body front framing, camera completely static on tripod. 9:16 vertical.\nAction: the daughter playfully jumps up and wraps her arms around her father's shoulders from behind in a piggyback hug, laughing; the father braces and holds her legs, smiling. Interaction: the white t-shirt stretches naturally across shoulders and back under weight and springs back.\nNatural UGC aesthetic, soft kitchen lighting.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 39,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "PULAR NAS COSTAS DO PAI/MÃE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788138597997-Man_and_daughter_piggyback_hug_202607311241.mp4",
+        prompt: "Animate the provided frame. Full-body framing, locked tripod, single continuous take.\nSubject: a man in his 50s and his daughter in a cozy kitchen. The daughter jumps onto his back playfully with laughing breath, realistic stretch of cotton cloth under inertia, stable faces and exact print reproduction without morphing.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 40,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "PINÇAR TECIDO DA CAMISETA DO PAI/MÃE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788138783748-Man_and_woman_in_kitchen_202607311329.mp4",
+        prompt: "Medium full framing, locked tripod, 9:16 vertical.\nAction: the daughter lifts her free hand and gently pinches a small section of the t-shirt fabric near his chest between her fingers, tugging it lightly outward to test the material, then releasing it and letting the fabric fall back into place with natural cotton elasticity.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 41,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "ALISANDO A CAMISETA NA ALTURA DA ESTAMPA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788138927884-Man_and_woman_in_kitchen_202607311331.mp4",
+        prompt: "Action: the daughter smiles and gently smooths her open hand across the front of her father's t-shirt near the printed illustration, feeling the soft cotton, then rests her hand lightly on his chest. Interaction: fabric flattens slightly and recovers naturally without blur or distortion.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 42,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "GARGALHADA E ABRAÇO FAMILIAR",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788139011768-Animate_the_provided_frame._Preserve_202607311331.mp4",
+        prompt: "Full-body front framing, locked-off tripod. Action: father playfully nudges daughter's shoulder and laughs; she leans into him and gently pokes his side, both swaying in affectionate sync. T-shirt folds form and release naturally with posture shifts.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 43,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "INTERAÇÃO DO PAI/MÃE COM A BLUSA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788139105582-Man_tugs_t-shirt_hem_202607311332.mp4",
+        prompt: "Action: father takes a few relaxed steps forward, pauses and briefly tugs down the hem of his t-shirt with one hand to straighten it comfortably into place, while daughter watches admiringly and smiles. Fabric resettles with realistic weight.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 44,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "FAZ CORAÇÃO COM AS MÃOS E APONTA PARA BAIXO (CTA)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788139177467-Pai_e_filha_caminham_juntos_202607311333-1-.mp4",
+        prompt: "Pai e filha caminham lentamente alguns passos em direção à câmera mantendo contato visual alternado entre eles e a câmera. A filha abraça delicadamente a cintura do pai enquanto ele repousa a mão no ombro dela. Em seguida fazem um pequeno coração com as mãos juntos. Logo após, ambos apontam suavemente para baixo com o dedo indicador com um sorriso simpático.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 45,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "CAMINHA EM DIREÇÃO À CÂMERA E DÁ PUSH NA BLUSA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788139253608-Man_touching_t-shirt_fabric_202607311334.mp4",
+        prompt: "O homem dá dois passos relaxados em direção à câmera, levanta uma mão e pinça suavemente uma pequena parte do tecido da camiseta perto do peito entre os dedos, puxando-a levemente para fora antes de soltá-la e deixar o tecido voltar ao lugar com elasticidade realista de algodão.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 46,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "PASSA A MÃO NA BLUSA SENTINDO A MACIEZ",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788139462334-Man_touching_t-shirt_fabric_202607311335.mp4",
+        prompt: "Ação: o homem dá dois passos relaxados em direção à câmera e, em seguida, passa a mão aberta pela frente da camiseta, perto da estampa, sentindo a maciez do algodão, antes de deixar a mão cair naturalmente ao lado do corpo. O tecido achata-se levemente sob a palma e retorna à forma natural.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 47,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "CAMINHA E AJEITA A BARRA DA BLUSA ISOLADO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788139675271-Man_adjusting_t-shirt_202607311335.mp4",
+        prompt: "Anime o quadro fornecido. Foque apenas no homem, enquadrando a imagem para destacá-lo isoladamente.\nEnquadramento de corpo inteiro de frente; tripé fixo; sem zoom ou cortes. O homem dá dois passos relaxados em direção à câmera e puxa brevemente a barra da camiseta para baixo com uma mão para ajeitá-la com caimento e peso realistas.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 48,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "ABRAÇO E INTERAÇÃO COM A PARTE DE TRÁS DA BLUSA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788139789261-Woman_touching_man-s_back_202607311336.mp4",
+        prompt: "Plano médio (joelhos para cima), vista de costas. A mulher desliza suavemente a mão pelas costas da camiseta do homem, perto da ilustração estampada, alisando o tecido com a palma antes de deixá-la descansar no ombro dele. Estampa nítida e sem distorções.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 49,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "PINÇAR O OMBRO DAS COSTAS DA CAMISETA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788139857984-Woman_touching_t-shirt_fabric_202607311337.mp4",
+        prompt: "A mulher pinça levemente uma pequena parte do tecido da camiseta no ombro dele entre os dedos, puxando-a gentilmente para fora para sentir o material, e então a solta, deixando o tecido voltar naturalmente ao lugar com caimento realista.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 50,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "LENDO TEXTO DAS COSTAS DA CAMISETA E RISOS",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788139961524-Woman_reads_text_on_shirt_202607311338.mp4",
+        prompt: "A mulher inclina-se levemente para o lado, tombando a cabeça para ler o texto impresso nas costas da camiseta dele; ela passa suavemente a ponta do dedo logo acima das letras enquanto lê, depois sorri carinhosamente e volta à posição ereta.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+      {
+        id: 51,
+        category: "pai-mae",
+        categoryName: "🎬 PAI / MÃE",
+        title: "ABRAÇO E INTERAÇÃO AFETIVA COM A BLUSA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788140042533-Mulher_lendo_camiseta_dele_202607311338-1-.mp4",
+        prompt: "Anime o quadro fornecido preservando ambiente e iluminação. Vista de costas em plano médio, a mulher desliza o dedo lendo as letras das costas da camiseta do homem, sorrindo e terminando em abraço acolhedor sem distorções no tecido.",
+        howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
+      },
+
+      // ==========================================
+      // 6. 🎬 CAPINHAS CELULAR (6 Vídeos)
+      // ==========================================
+      {
+        id: 52,
+        category: "capinhas",
+        categoryName: "🎬 CAPINHAS CELULAR",
+        title: "USE A IMAGEM PRONTA DO PRODUTO (CLOSE-UP 45° E TILT)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787060642588-o6d37b-hand-holding-phone-case-202608181042.mp4",
+        prompt: "Vídeo ultra-realista, formato vertical (9:16), estilo UGC/Demonstração de produto. Close-up extremo em uma mão feminina segurando uma capa de celular com detalhes reflexivos. Fundo de quarto residencial suavemente desfocado (bokeh). Sem espelho.\n\nCronograma de Movimento (8 Segundos):\n0.0-2.0s: A mão segura a capa em um ângulo de 45 graus em direção à câmera, mantendo o foco nítido na textura e superfície da capa.\n2.0-5.0s: Movimento suave e lento de inclinação (tilt) do pulso (10 a 15 graus).\n5.0-7.0s: A mão aproxima suavemente a capa da lente (sensação macro) e afasta um pouco, mostrando os detalhes\n7.0-8.0s: Trava a posição no ângulo de maior brilho e permanece imóvel no segundo final.",
+        howTo: ""
+      },
+      {
+        id: 53,
+        category: "capinhas",
+        categoryName: "🎬 CAPINHAS CELULAR",
+        title: "USE A IMAGEM PRONTA DO PRODUTO (BRILHO DINÂMICO)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787060347887-qr4se6-hand-holding-phone-case-202608181037.mp4",
+        prompt: "Vídeo ultra-realista, formato vertical (9:16), estilo UGC/Demonstração de produto. Close-up extremo em uma mão feminina segurando uma capa de celular com detalhes reflexivos. Fundo de quarto residencial suavemente desfocado (bokeh).\nCronograma: 0-2s segura a 45°; 2-5s inclinação sutil fazendo a luz deslizar pelas partes reflexivas da capa e criar um brilho dinâmico; 5-7s aproximação macro; 7-8s trava no ângulo de maior brilho.",
+        howTo: ""
+      },
+      {
+        id: 54,
+        category: "capinhas",
+        categoryName: "🎬 CAPINHAS CELULAR",
+        title: "USE A IMAGEM PRONTA DO PRODUTO (CAPINHA AVANÇA E COBRE A LENTE)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786539128250-nzewsg-woman-moving-phone-toward-camera-202608120950.mp4",
+        prompt: "Vídeo contínuo de aproximadamente 8 segundos, vertical 9:16, completamente silencioso.\nA única ação do vídeo é a mulher mover suavemente A CAPINHA que já está em sua mão DIRETAMENTE EM DIREÇÃO À LENTE DA CÂMERA.\nÀ medida que se aproxima, a capinha aumenta naturalmente no enquadramento até cobrir 100% da lente, funcionando como transição física limpa.",
+        howTo: ""
+      },
+      {
+        id: 55,
+        category: "capinhas",
+        categoryName: "🎬 CAPINHAS CELULAR",
+        title: "USE A IMAGEM PRONTA DO PRODUTO (CELULAR COM CAPINHA COBRE A CÂMERA)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786539405108-um46pd-woman-moving-phone-toward-camera-202608120955.mp4",
+        prompt: "A mulher aproxima o smartphone com a capinha floral em linha reta até a lente da câmera. O aparelho avança progressivamente, sem giros, até que a traseira do celular bloqueie totalmente a visão no frame final.",
+        howTo: ""
+      },
+      {
+        id: 56,
+        category: "capinhas",
+        categoryName: "🎬 CAPINHAS CELULAR",
+        title: "USE A IMAGEM PRONTA DO PRODUTO (ENCAIXANDO A CAPINHA NO APARELHO)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786539338596-yjxtbm-mao-colocando-capinha-em-celular-202608120953.mp4",
+        prompt: "Vídeo contínuo de 8 segundos, vertical 9:16. Sequência física precisa: alinhar a capinha → encaixar o telefone → pressionar as bordas flexíveis de silicone/TPU → parar. Mãos com manicure limpa, encaixe suave ao redor do módulo de câmeras sem deformação.",
+        howTo: ""
+      },
+      {
+        id: 57,
+        category: "capinhas",
+        categoryName: "🎬 CAPINHAS CELULAR",
+        title: "IMAGEM DA MODELO + IMAGEM DA CAPINHA + FUNDO (SELFIE NO ESPELHO)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-30/1790762749558-gemini_generated_video_cb2546cf.mp4",
+        prompt: "Crie um vídeo vertical 9:16 de selfie no espelho usando EXATAMENTE a mulher da primeira imagem de referência, EXATAMENTE a capinha do celular da segunda imagem de referência e EXATAMENTE o ambiente/fundo da terceira imagem de referência.\nEla segura o celular naturalmente em frente ao espelho com a parte traseira da capinha voltada para a câmera, cobrindo parte do rosto em movimento sutil e confortável.",
+        howTo: ""
+      },
+
+      // ==========================================
+      // 7. 🎬 FEMININOS (56 Vídeos)
+      // ==========================================
+      {
+        id: 58,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: AJUSTE DA ALÇA DA BLUSA COM SORRISO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786964990525-49v857-video5109359839113381320.mp4",
+        prompt: "Vídeo de 5 segundos.\nA personagem puxa delicadamente uma das mãos até a alça da blusa e a puxa suavemente para cima, ajustando-a de forma natural. Em seguida, mantém contato visual com a câmera enquanto faz uma leve expressão de aprovação, abrindo discretamente o sorriso. Finaliza mantendo um sorriso simpático e um leve balanço corporal contínuo.",
+        howTo: ""
+      },
+      {
+        id: 59,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: BALANÇO SUAVE E TRANSIÇÃO TAPANDO A LENTE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786965464802-itsvpu-video5107108039299696975-1-.mp4",
+        prompt: "A personagem inicia realizando um balanço corporal suave e contínuo de um lado para o outro. O vestido acompanha o movimento naturalmente. Em seguida passa os dedos pelo cabelo e estende a mão até cobrir completamente a lente da câmera criando uma transição limpa.",
+        howTo: ""
+      },
+      {
+        id: 60,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: DESLIZAR DEDOS NO TECIDO E APONTAR PARA BAIXO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786965237572-apx61m-video5107108039299696977-1-.mp4",
+        prompt: "A personagem segura delicadamente uma parte do vestido próxima ao vinco da saia e desliza suavemente os dedos pelo tecido, evidenciando sua leveza e caimento. Logo depois dá uma piscada discreta com sorriso simpático e aponta delicadamente o dedo indicador para baixo.",
+        howTo: ""
+      },
+      {
+        id: 61,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: FINGER HEART WIGGLE E TRANSIÇÃO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786634002559-ogi6yz-video5183767613485876677.mp4",
+        prompt: "{\n  \"video_prompt\": {\n    \"subject\": {\n      \"description\": \"Young East Asian woman maintaining exact visual identity, outfit, and setting from reference photo.\",\n      \"framing\": \"Medium shot from waist up.\"\n    },\n    \"sequence\": [\n      {\"step\": 1, \"action\": \"Finger Heart Wiggle\"},\n      {\"step\": 2, \"action\": \"Transition & Smile\"},\n      {\"step\": 3, \"action\": \"Camera Turn Off closing lens\"}\n    ]\n  }\n}",
+        howTo: ""
+      },
+      {
+        id: 62,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: AJUSTA A FRANJA E VIRA ROSTO COM SORRISO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786965165202-29ist7-video5109359839113381316.mp4",
+        prompt: "A personagem permanece com o corpo levemente virado para um dos lados. Leva delicadamente uma das mãos até a franja, ajustando-a de forma natural. Vira suavemente o rosto para a câmera com sorriso espontâneo e balanço natural.",
+        howTo: ""
+      },
+      {
+        id: 63,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "CTA FINAL: FINGER HEART, BEIJO DELICADO E SORRISO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786633949512-bohn2c-video5183767613485876679.mp4",
+        prompt: "{\n  \"subject\": {\"description\": \"Young Asian woman in light yellow Y2K tank top and jeans\"},\n  \"action_sequence\": [\n    {\"step\": 1, \"description\": \"Brings hand closer with finger heart gesture\"},\n    {\"step\": 2, \"description\": \"Blowing a sweet, subtle kiss towards camera\"},\n    {\"step\": 3, \"description\": \"Finishes with warm genuine smile\"}\n  ]\n}",
+        howTo: ""
+      },
+      {
+        id: 64,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: AJUSTE NA BARRA E DESLIZE NO TECIDO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786586908245-gxoeg0-video5080587964866628532-1-.mp4",
+        prompt: "A personagem ajusta a barra da blusa com as pontas dos dedos, desliza a mão sobre a parte frontal valorizando o tecido, levanta o olhar com sorriso discreto e faz pose casual com mão na cintura.",
+        howTo: ""
+      },
+      {
+        id: 65,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: PUXADA RÍTMICA NAS COSTURAS LATERAIS DO TOP",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786586757631-kroaz6-video5080587964866628533-1-.mp4",
+        prompt: "Com as duas mãos síncronas, puxada rápida e curta nas costuras laterais superiores do top por 4 vezes consecutivas tipo estalo, demonstrando elasticidade e assentando a barra inferior da cintura no final.",
+        howTo: ""
+      },
+      {
+        id: 66,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "PULO DE TRANSIÇÃO. REFORÇO E ADMIRAÇÃO DO LOOK",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-02/1788345672187-5e1d3506-a6d2-46d4-b481-65ad450d59b3-1-.mp4",
+        prompt: "A modelo realiza um pequeno pulo natural, estabiliza o corpo, desliza as mãos pelas laterais do tronco acompanhando o caimento da roupa, gira 45° mostrando o perfil e finaliza com olhar acolhedor.",
+        howTo: ""
+      },
+      {
+        id: 67,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO INICIAL: BALANÇA A PEÇA NAS MÃOS E PEQUENO PULO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-02/1788345909471-e5fed8f2-8d7c-4ff0-84f0-3c3a1f20aa46-1-.mp4",
+        prompt: "A personagem segura a peça com as duas mãos, balança suavemente mostrando detalhes, sorri para a lente e dá um pulinho para cima iniciando transição para o look vestido.",
+        howTo: ""
+      },
+      {
+        id: 68,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "CTA FINAL: CARA FOFA E APONTA INDICADOR PARA BAIXO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786585005062-0v3ty6-grok-52dcfb7c-3952-4a06-8723-c2df65afa1f3.mp4",
+        prompt: "Plano contínuo 6s estático. Contato visual com sorriso natural, expressão fofa e aponta firmemente com o indicador para baixo em direção ao link do carrinho.",
+        howTo: ""
+      },
+      {
+        id: 69,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "CTA FINAL: SORRISO, APONTA PARA BAIXO, BEIJO E TCHAU",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786584286340-4kl3gp-grok-fc2bbe11-8eec-4d48-bc0e-e9981a8efe99.mp4",
+        prompt: "A personagem faz um leve sorriso, inclina discretamente a cabeça em sinal de aprovação, aponta suavemente para baixo e sopra um beijo delicado, despedindo-se com aceno suave de mão.",
+        howTo: ""
+      },
+      {
+        id: 70,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: PUSH EM PINÇA NO TOP E CABELO NA ORELHA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786584216957-9di7y8-grok-27883bbc-5777-4651-b977-4541ee4dd80c-1-.mp4",
+        prompt: "A personagem faz um pequeno push natural em formato de pinça no decote do top evidenciando elasticidade e coloca mecha de cabelo atrás da orelha com sorriso simpático.",
+        howTo: ""
+      },
+      {
+        id: 71,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "PASSA AS MÃOS NO CABELO E DÁ UMA PISCADA. REFORÇO/CTA FINAL",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-01/1788272898093-video5109359839113381315-1-.mp4",
+        prompt: "A personagem eleva lentamente as duas mãos até os cabelos, passando os dedos no couro cabeludo e jogando o cabelo delicadamente para trás. Pisca com um dos olhos acompanhada de sorriso descontraído.",
+        howTo: ""
+      },
+      {
+        id: 72,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "CTA FINAL: BEIJO COM AS DUAS MÃOS E APONTAR PARA BAIXO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786561711520-uuk8nd-grok-986d4b2a-7e66-4aaa-8716-29b6bafe8b93.mp4",
+        prompt: "Leva suavemente as duas mãos até a boca e manda um beijo delicado em direção à lente. Em seguida abaixa a mão e aponta o indicador para baixo sustentando sorriso acolhedor.",
+        howTo: ""
+      },
+      {
+        id: 73,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: PASSO À FRENTE E PUSH NO BUSTO NO ESPELHO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786584954714-nuz9nn-grok-566bb5af-25cf-4bfa-a9a1-b7e1ffd4603a.mp4",
+        prompt: "A modelo se filma no espelho, dá um passo à frente aproximando o look, segura o tecido na altura do busto em pinça puxando suavemente para a frente e soltando para voltar ao caimento normal.",
+        howTo: ""
+      },
+      {
+        id: 74,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: AJUSTE OMBRO A OMBRO E DESLIZE FRONTAL",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786584448053-7efni9-grok-b9fcefb3-62f1-4473-aa39-e246bece7814.mp4",
+        prompt: "A modelo ajusta delicadamente o decote ombro a ombro deslizando os dedos, alisa a frente da blusa destacando caimento e faz virada de ombros para mostrar diferentes ângulos.",
+        howTo: ""
+      },
+      {
+        id: 75,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "REFORÇO/CTA FINAL: AJUSTE DO VESTIDO, PISCADINHA E APONTAR",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786584837803-7j2n8v-grok-ca3487db-84da-4a1f-bcd5-ee8f12ef22f4.mp4",
+        prompt: "A modelo ajusta a parte superior do vestido, alisa cintura e quadril evidenciando a modelagem franzida, muda o peso entre as pernas, dá uma piscada e aponta duas vezes para baixo.",
+        howTo: ""
+      },
+      {
+        id: 76,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "FECHA O ZÍPER DA JAQUETA E RECUO SUAVE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-10-08/1791458650498-20e19987-4bdf-4469-8680-c32086652265.mp4",
+        prompt: "A modelo segura o cursor do zíper da jaqueta aberta e fecha em movimento fluido contínuo. Recua meio passo exibindo o look completo, toca a gola e desliza a mão pela cintura.",
+        howTo: "USE A IMAGEM PRONTA DA MODELO"
+      },
+      {
+        id: 77,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: PASSO À FRENTE E BLUR DE TRANSIÇÃO COM A MÃO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786447818273-30g0ph-video5174645545330804989.mp4",
+        prompt: "A modelo dá um passo à frente, toca o colar, levanta a palma aberta bem perto da lente criando desfoque de transição suave e recua de volta para pose confiante em 3/4.",
+        howTo: ""
+      },
+      {
+        id: 78,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "REFORÇO/CTA FINAL: GIRO SEM MOSTRAR COSTAS E APONTAR PARA BAIXO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786400276747-qijflq-video-vertical-duracao-d.mp4",
+        prompt: "Ela gira o corpo suavemente sem mostrar as costas, coloca cabelo atrás da orelha, aproxima o tronco da câmera com sorriso natural e aponta indicador para baixo.",
+        howTo: ""
+      },
+      {
+        id: 79,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "REFORÇO/CTA FINAL: DESLIZE NO CORSET E GIRO 30°",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786396076517-mlo7qa-anti-bug-coloque-o-comando.mp4",
+        prompt: "Ela abre sorriso discreto, aproxima o tronco, desliza a mão de cima a baixo no corset destacando o acabamento, faz virada de 30° e retorna para posição frontal.",
+        howTo: ""
+      },
+      {
+        id: 80,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: APROXIMAÇÃO DO ESPELHO E DESLIZE LATERAL",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786584901595-tmo4uf-grok-4d38e604-e196-43bb-8ade-3c9721278afd.mp4",
+        prompt: "A modelo se aproxima do espelho com zoom suave na roupa (top e short) e desliza a mão pela lateral do corpo em sentido vertical.",
+        howTo: ""
+      },
+      {
+        id: 81,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: PUXA GOLA, BRAÇOS CRUZADOS E TAMPA A CÂMERA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786561985682-agwh0z-model-posing-and-moving-for-202608111211.mp4",
+        prompt: "Puxa a gola levemente para frente e solta, cruza os braços com olhar de aprovação e estica o braço tapando a lente da câmera totalmente para corte limpo.",
+        howTo: ""
+      },
+      {
+        id: 82,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: REVELAÇÃO DO VESTIDO AFASTANDO A MÃO DA LENTE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786965396287-cubcib-video5107108039299696976-1-.mp4",
+        prompt: "Inicia com a mão cobrindo a lente. Afasta a mão revelando o vestido, dá dois passos para trás exibindo a peça inteira e ajusta a franja sorrindo.",
+        howTo: ""
+      },
+      {
+        id: 83,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: AJUSTE DE BUSTO E ROTAÇÃO DE 20°",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786965512392-jakx1c-video5107108039299696974-1-.mp4",
+        prompt: "Ajusta o busto do vestido com ambas as mãos, desliza até a cintura alisando o tecido, gira 20° mostrando a leveza da saia e finaliza com cabelo atrás da orelha.",
+        howTo: ""
+      },
+      {
+        id: 84,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO/CTA: VÍDEOS DE 10 SEGUNDOS COM CORTES RÁPIDOS",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-04/1788529085496-Creating_vertical_UGC_TikTok_video_202609041037.mp4",
+        prompt: "Vídeo vertical de 10 segundos no estilo UGC para o TikTok Shop. Mantém consistência da modelo, cortes rápidos (plano médio, close na função, over-the-shoulder, selfie na mão e final sorrindo apontando para baixo).",
+        howTo: "IMAGEM DA MODELO + PRODUTO"
+      },
+      {
+        id: 85,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: PUXA ALÇA DA BLUSA E INCLINA CABEÇA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786965085696-3xoc06-video5109359839113381318.mp4",
+        prompt: "Puxa uma das alças da blusa suavemente, inclina a cabeça com expressão encantada e sustenta leve balanço corporal mantendo a blusa em destaque.",
+        howTo: ""
+      },
+      {
+        id: 86,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "PASSA O PINCEL NO ROSTO E MANDA BEIJO NO FINAL. GANCHO/CTA FINAL",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787050764369-yc5js2-6dc0c2e0-4fbf-43a1-97b6-8fc9a7e65e22.mp4",
+        prompt: "Aplica pincel de pó na bochecha, tampa a lente com as cerdas para transição, revela o look completo com giro controlado, apoia as mãos no cós do short jeans e finaliza mandando beijo.",
+        howTo: ""
+      },
+      {
+        id: 87,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: MÃOS NOS BOLSOS DA CALÇA CARGO NO ESPELHO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786965620647-i9ucol-fb6b43c8-8460-4c17-88ac-bf846d965ff6-1-.mp4",
+        prompt: "Abre sorriso espontâneo, coloca as mãos nos bolsos da calça cargo bege deslocando peso entre as pernas, caminha até o espelho e tampa a lente com o smartphone.",
+        howTo: ""
+      },
+      {
+        id: 88,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: COLOCA AS MÃOS NO BOLSO DO SHORT",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787187762066-hsntzm-video-vertical-duracao-d-1-.mp4",
+        prompt: "A modelo leva as duas mãos até os bolsos do short e as encaixa suavemente dentro deles, mantendo postura relaxada e natural.",
+        howTo: ""
+      },
+      {
+        id: 89,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: SELFIE NO ESPELHO CALÇA CARGO (10S)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786965566255-aguw6v-d160ecc1-3ace-4591-9dff-20738b770b5f-1-.mp4",
+        prompt: "Selfie no espelho 10s: ajusta o cós com ambas as mãos, passa os dedos pelo cabelo com balanço nos quadris e dá passo próximo ajustando o bolso cargo.",
+        howTo: ""
+      },
+      {
+        id: 90,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: PUSH NA BARRA DA BLUSA SEGUIDA DE POSE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786584082236-pw2vym-grok-bee16dd8-c107-4c76-8f37-561279b8adbf-1-.mp4",
+        prompt: "A modelo ajusta a barra da blusa com os dedos, desliza a mão pela frente do tecido, ergue o olhar para a câmera com sorriso discreto e faz pose lateral com mão na cintura.",
+        howTo: ""
+      },
+      {
+        id: 91,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: SELFIE CONTÍNUA DESLIZANDO MÃO E ALÇA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786588161614-5hutlk-video5080587964866628571.mp4",
+        prompt: "Selfie no espelho: a mão direita desliza pela coxa, sobe ao quadril, pressiona o abdômen destacando silhueta, faz rotação de perfil e ajusta a alça do ombro com firmeza.",
+        howTo: ""
+      },
+      {
+        id: 92,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: ALINHAMENTO DA CAMISETA E CÓS DO SHORT",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787138716668-2mwdss-model-adjusting-clothes-202608190822.mp4",
+        prompt: "Enquadramento do pescoço ao quadril. Alisa a barra da camiseta de cima a baixo com as duas mãos e toca suavemente o cós do short assentando a peça.",
+        howTo: ""
+      },
+      {
+        id: 93,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: AJUSTE LATERAL DA CINTURA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786963168265-megqk8-44a3b5aa-0019-4dce-a22e-f37772cdf871.mp4",
+        prompt: "A modelo olha para a cintura e puxa suavemente o tecido nas laterais da cintura e quadril com puxões alternados para evidenciar a compressão e a silhueta da peça.",
+        howTo: ""
+      },
+      {
+        id: 94,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO INICIAL: EXPRESSÃO DE SURPRESA E ADMIRAÇÃO NO ESPELHO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786588117834-zctkk0-woman-admiring-tank-top-202607131158.mp4",
+        prompt: "Mão no rosto com expressão de 'uau' no espelho. Em seguida abaixa a mão na frente da regata, puxa levemente demonstrando conforto e desliza os dedos com satisfação total.",
+        howTo: ""
+      },
+      {
+        id: 95,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "MODELO JÁ COM O PACOTE NAS MÃOS (CORTES RÁPIDOS)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786587223620-w02za2-img-3067.mp4",
+        prompt: "Cortes dinâmicos de pacote sendo jogado para a modelo, corte rápido dela segurando o pacote preto com as duas mãos mostrando para a lente com expressão curiosa.",
+        howTo: ""
+      },
+      {
+        id: 96,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: SELFIE DE COSTAS NO ESPELHO COM MÃO NA CINTURA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786586556047-xvw46l-5dcb47be-a466-4cf4-9bdd-ce7b1a21d3f1-1-.mp4",
+        prompt: "A modelo se filma de costas no espelho com o celular em uma mão e apoia suavemente a outra mão na cintura destacando o caimento traseiro da roupa.",
+        howTo: ""
+      },
+      {
+        id: 97,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: DE COSTAS PASSANDO DEDOS NO CABELO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786588079510-88xlye-video5073569052002092745.mp4",
+        prompt: "Permanece 100% de costas para a câmera, desliza lentamente os dedos pelo cabelo balançando levemente os quadris para evidenciar a modelagem traseira do short.",
+        howTo: ""
+      },
+      {
+        id: 98,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "CTA FINAL: AJUSTE DO SHORT DE ALFAIATARIA E APONTAR PARA BAIXO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786965708172-kytwhz-video5073854753226622699.mp4",
+        prompt: "Passa a mão na frente do short de alfaiataria exibindo corte e estrutura, segura a barra, projeta o quadril com segurança e aponta indicador para baixo com sorriso vendedor.",
+        howTo: ""
+      },
+      {
+        id: 99,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "MODELO COM O PACOTE + ARREMESSO DA CAMISETA NA LENTE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786587049073-jxckk0-video5073569052002092686.mp4",
+        prompt: "A modelo segura a camiseta esticada com ambas as mãos e, em movimento firme e fluido, arremessa o tecido diretamente na lente da câmera, cobrindo todo o quadro.",
+        howTo: ""
+      },
+      {
+        id: 100,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: PASSO LATERAL EM POSE DE PERFIL",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787140121809-3n8na8-model-walking-into-side-pose-202608190847.mp4",
+        prompt: "A modelo caminha alguns passos para o lado até ficar de perfil para a câmera, movendo o corpo com naturalidade e parando em uma pose lateral relaxada.",
+        howTo: ""
+      },
+      {
+        id: 101,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "CTA FINAL: TRANSIÇÃO COM MÃO NA LENTE E CINTA MODELADORA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786962759086-cdt42x-929b049f-e203-4223-abc3-6f466868c837.mp4",
+        prompt: "Começa com a mão cobrindo a lente. Ao afastar, já veste a cinta modeladora preta ajustada, admira a silhueta, puxa as laterais demonstrando compressão e aponta indicador para baixo.",
+        howTo: ""
+      },
+      {
+        id: 102,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: RISADA NO ESPELHO E GIRO RÁPIDO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786385040885-q7h0bw-model-filming-in-mirror-202608070948-1-.mp4",
+        prompt: "A modelo se filma no espelho, solta risada espontânea, ajeita cabelo na orelha e dá um giro breve mostrando as costas da peça antes de retornar para frente.",
+        howTo: ""
+      },
+      {
+        id: 103,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "REFORÇO/CTA FINAL: APRESENTAÇÃO FASHION, PUSH E APONTAR",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786447922696-zcpm77-video5174645545330804999.mp4",
+        prompt: "A influenciadora dá um passo à frente, puxa suavemente a alça da blusa duas vezes, desliza a mão sobre o abdômen, faz giros de 45° e aponta indicador duas vezes para baixo.",
+        howTo: ""
+      },
+      {
+        id: 104,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: RISADA E GIRO COMPLETO NO ESPELHO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786384935823-gxl18f-modelo-ajustando-cabelo-e-girando-202608071151-1-.mp4",
+        prompt: "A modelo se filma no espelho, solta risada breve, ajusta o cabelo atrás da orelha e gira mostrando o caimento das costas antes de retornar de frente.",
+        howTo: ""
+      },
+      {
+        id: 105,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: CAMINHADA DIRECIONADA À CÂMERA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787139895520-ozz9h1-model-walking-toward-camera-202608190843.mp4",
+        prompt: "A modelo dá alguns passos à frente caminhando naturalmente em direção à câmera até ficar em plano próximo com quadril balançando de forma leve.",
+        howTo: ""
+      },
+      {
+        id: 106,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: REVELAÇÃO DA CINTA MODELADORA COM TRANSIÇÃO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786415562199-yrt4jk-a-personagem-inicia-cobrindo-c.mp4",
+        prompt: "Mão destampa a câmera revelando cinta modeladora preta ajustada, expressão de surpresa 'uau', mãos no rosto, puxões laterais demonstrando firmeza e repouso confiante.",
+        howTo: ""
+      },
+      {
+        id: 107,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: DESLIZE FRONTAL E CABELO ATRÁS DA ORELHA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786965124776-qcydw9-video5109359839113381317.mp4",
+        prompt: "Desliza ambas as mãos sobre a frente da blusa alisando o tecido, apoia as mãos na cintura com rotação lateral e coloca o cabelo atrás da orelha sorrindo.",
+        howTo: ""
+      },
+      {
+        id: 108,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO: COLOCANDO FOGO NA ENCOMENDA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-04/1788523051075-Modelo_queimando_pacote_em_camera_202609040857.mp4",
+        prompt: "A modelo segura embalagem preta do TikTok Shop em uma mão e isqueiro na outra. Acende a chama encostando no pacote que pega fogo e avança em direção à lente cobrindo 100% da tela.",
+        howTo: "USE A IMAGEM DA MODELO. COLOQUE UMA TRANSIÇÃO DE ESMAECIMENTO."
+      },
+      {
+        id: 109,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "CALÇA FLARE PRETA (SEM ROSTO, SEM CELULAR, FOCO TOTAL)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787225225984-8e7nz2-woman-modeling-black-flare-pants-202608200825.mp4",
+        prompt: "Enquadramento do pescoço aos pés. A modelo desliza as mãos pelas laterais do quadril, puxa o tecido na coxa soltando para ver elasticidade, cruza pernas mostrando boca flare e gira 360° com passos curtos.",
+        howTo: ""
+      },
+      {
+        id: 110,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: LEVANTA CABELOS E REVELA COSTAS DA ROUPA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786587299616-npjtc7-3889c07c-df12-48f9-9edd-1142d9f3b3f1.mp4",
+        prompt: "A modelo leva as duas mãos aos cabelos, levanta-os de forma fluida para revelar completamente as costas da roupa, sustenta a pose e solta os fios suavemente.",
+        howTo: ""
+      },
+      {
+        id: 111,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO/REFORÇO: GRAVAÇÃO DO REFLEXO TRASEIRO NO ESPELHO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786586521033-nuuuqr-ff9c8514-d1e9-4d27-a3a6-a1bc151e8d11-1-.mp4",
+        prompt: "A modelo permanece de costas para o espelho segurando o celular na altura do rosto enquanto grava o reflexo com balanço natural e aproximação suave.",
+        howTo: ""
+      },
+      {
+        id: 112,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "GANCHO INICIAL: UNBOXING POV ABRINDO ENCOMENDA E TAPANDO CÂMERA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786587526477-9d9lwi-c9d927b2-f28d-4261-b0c7-b76f2c76d513-1-.mp4",
+        prompt: "Sem mostrar o rosto, a modelo dá passos à frente segurando o pacote, rasga a embalagem de plástico com física realista e finaliza cobrindo toda a lente com a mão esquerda.",
+        howTo: ""
+      },
+      {
+        id: 113,
+        category: "femininos",
+        categoryName: "🎬 FEMININOS",
+        title: "FOGO NA PILHA DE ROUPAS E TRANSIÇÃO (CENA 1 A 7)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-04/1788521259312-Model_creating_fashion_video_script_202609040827.mp4",
+        prompt: "Guarda-roupa esvaziado com pilha de roupas no chão. A modelo encosta o isqueiro na pilha, o fogo sobe cobrindo a tela (transição). O pacote entra em cena, ela abre, retira a peça e aponta para baixo.",
+        howTo: "MODELO + PEÇA + PACOTE."
+      },
+
+      // ==========================================
+      // 8. 🎬 MASCULINOS (6 Vídeos)
+      // ==========================================
+      {
+        id: 114,
+        category: "masculinos",
+        categoryName: "🎬 MASCULINOS",
+        title: "GANCHO/REFORÇO: PULL RÁPIDO NO PEITO E GIRO DE PERFIL (8K UHD)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786384559455-hnjfro-video5165721625491933162.mp4",
+        prompt: "{\n  \"generation_parameters\": {\n    \"resolution\": \"8K UHD\",\n    \"quality\": \"photorealistic, hyperrealistic, high details, 60fps, crisp motion\",\n    \"shot_type\": \"medium shot, static camera, eye-level angle\",\n    \"style\": \"ultra-fast and fluid realistic human action\"\n  },\n  \"motion_prompt\": {\n    \"camera\": \"Static medium shot centered on the subject, stable camera frame.\",\n    \"pacing\": \"Immediate start, fast motion execution with zero delay.\",\n    \"action_sequence\": \"The subject immediately glances downward, quickly pinches and gives a single rapid pull to the chest area of the shirt with both hands, instantly releasing it so it snaps back. Immediately after releasing, the subject snaps head up to look straight forward into the camera, assumes a confident pose, smoothly turns to the side, and quickly adjusts/tugs the sleeve of the shirt with one hand.\",\n    \"motion_physics\": \"Snappy, high-speed fabric recoil, crisp arm and hand dynamics, fluid head turn and smooth torso rotation.\"\n  }\n}",
+        howTo: ""
+      },
+      {
+        id: 115,
+        category: "masculinos",
+        categoryName: "🎬 MASCULINOS",
+        title: "GANCHO/REFORÇO: AJUSTES RÍTMICOS E CONTATO VISUAL CONFIANTE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786384489048-ce0vpj-video5159307989483521626.mp4",
+        prompt: "{\n  \"camera\": {\n    \"type\": \"Static frontal shot\",\n    \"framing\": \"Medium vertical shot (head to knees)\",\n    \"movement\": \"None\"\n  },\n  \"character_actions\": {\n    \"continuous_interaction\": \"Slightly rhythmic and subtle adjustments of the shirt fabric, featuring short pauses between gentle tugs and hand strokes, maintaining high confidence.\",\n    \"motion_sequence\": [\n      {\n        \"timestamp\": \"00:00 - 00:02\",\n        \"head_movement\": \"Head raised, holding steady, direct eye contact with the camera with an intense, confident gaze.\",\n        \"hand_actions\": \"Left hand lightly grabs the chest area of the shirt, gives two subtle tugs forward with a brief pause in between, while the right hand rests naturally.\",\n        \"facial_expression\": \"Confident, strong eye contact.\"\n      },\n      {\n        \"timestamp\": \"00:02 - 00:04\",\n        \"head_movement\": \"Slight head tilt, keeping continuous eye contact with the camera.\",\n        \"hand_actions\": \"Smoothly passes palm down the front fabric from chest to stomach, pausing briefly at the waist.\",\n        \"facial_expression\": \"Subtle smirk / confident expression.\"\n      },\n      {\n        \"timestamp\": \"00:04 - 00:07\",\n        \"head_movement\": \"Holds camera eye contact steadily without turning away.\",\n        \"hand_actions\": \"Both hands reach for the bottom hem of the shirt, perform a few short, gentle downward tugs to adjust the fit, then pause momentarily before releasing.\",\n        \"facial_expression\": \"Relaxed and self-assured glance into the lens.\"\n      },\n      {\n        \"timestamp\": \"00:07 - 00:10\",\n        \"head_movement\": \"Maintains direct, charming eye contact with a final confident expression.\",\n        \"hand_actions\": \"Right hand glides smoothly over the upper chest once more to smooth out the fabric, then both arms return naturally to the sides.\",\n        \"facial_expression\": \"Confident smile looking straight at the camera.\"\n      }\n    ]\n  }\n}",
+        howTo: ""
+      },
+      {
+        id: 116,
+        category: "masculinos",
+        categoryName: "🎬 MASCULINOS",
+        title: "REFORÇO/CTA FINAL: AJUSTE DE GOLA, PEITORAL E APONTAR PARA BAIXO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786384596939-cpn89x-video5163811589110891873.mp4",
+        prompt: "{\n  \"video_prompt\": {\n    \"settings\": {\n      \"resolution\": \"8K UHD\",\n      \"frame_rate\": \"60fps\",\n      \"aspect_ratio\": \"9:16\",\n      \"style\": \"hyperrealistic, photorealistic, cinematic studio lighting, sharp focus, high-end commercial quality, no motion blur artifacts, zero physical glitching, natural video feed, no visual effects, no digital CGI transitions, realistic ambient motion\"\n    },\n    \"timeline_sequence\": [\n      {\n        \"timestamp\": \"00:00 - 00:01\",\n        \"action_description\": \"The subject stands centered facing the camera with a relaxed, self-assured posture. Both hands gently rise to the collar, lightly touching the edges with fingertip precision and effortlessly aligning the neck with calm, subtle confidence.\"\n      },\n      {\n        \"timestamp\": \"00:01 - 00:02\",\n        \"action_description\": \"Maintaining direct eye contact with a poised, confident posture, both hands gracefully adjust the shoulders and upper chest fit of the garment with subtle, deliberate touches. No hands touch or stroke the arms at any moment.\"\n      },\n      {\n        \"timestamp\": \"00:02 - 00:03\",\n        \"action_description\": \"With smooth, composed poise, the left hand lightly adjusts near the left shoulder collar with a subtle, fluid touch, maintaining a strong, calm presence toward the lens.\"\n      },\n      {\n        \"timestamp\": \"00:03 - 00:04\",\n        \"action_description\": \"The open palm of the left hand performs a gentle, delicate sweep across the upper chest from left to right. The movement is smooth, light, and confident, touching the fabric softly without altering any colors, graphics, or shirt designs.\"\n      },\n      {\n        \"timestamp\": \"00:04 - 00:05\",\n        \"action_description\": \"Both hands reach effortlessly toward the lower hem of the shirt at the waist, delicately holding the sides and straightening the cloth with a subtle, confident downward motion. Body remains steady with a relaxed posture.\"\n      },\n      {\n        \"timestamp\": \"00:05 - 00:06\",\n        \"action_description\": \"The right arm smoothly raises with a bent elbow, calmly extending the index finger to make a subtle point downward toward the center chest area, holding a poised, confident expression directly toward the camera.\"\n      }\n    ],\n    \"negative_prompt\": \"touching arms, stroking arms, sliding hands on sleeves, arm wipe, color change, emblem morphing, logo transition, CGI effects, magical transitions, quick abrupt movements, rushed gestures, aggressive pulling, jerky motion, glitch, distortion, morphing errors, unrealistic physical movement, unnatural hand gestures, low quality, blurry, noise, clothing pattern descriptions, skin tone details, facial features description, hair texture details\"\n  }\n}",
+        howTo: ""
+      },
+      {
+        id: 117,
+        category: "masculinos",
+        categoryName: "🎬 MASCULINOS",
+        title: "GANCHO/REFORÇO: MICROAJUSTES DA CAMISETA E PUXÃO NA BARRA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786384425951-ecxbwp-video5159307989483521623.mp4",
+        prompt: "{\n  \"camera\": {\n    \"type\": \"Static frontal shot\",\n    \"framing\": \"Medium vertical shot (head to knees)\",\n    \"movement\": \"None\"\n  },\n  \"character_actions\": {\n    \"continuous_interaction\": \"Subtle, continuous micro-adjustments and smoothing of the t-shirt fabric throughout the sequence without exaggerated or aggressive pulling.\",\n    \"motion_sequence\": [\n      {\n        \"timestamp\": \"00:00 - 00:01\",\n        \"head_movement\": \"Starts looking down, then smoothly raises head to face the camera directly.\",\n        \"left_arm_action\": \"Brings left hand to the upper left chest, continuously touching, smoothing, and adjusting the fabric.\",\n        \"right_arm_action\": \"Resting naturally at the side.\",\n        \"facial_expression\": \"Transitions from neutral downcast to a subtle, confident smile looking into the lens.\"\n      },\n      {\n        \"timestamp\": \"00:01 - 00:03\",\n        \"head_movement\": \"Slight tilt of the head to the left, brief glance downward, then re-engages eye contact with camera.\",\n        \"left_arm_action\": \"Slides left hand smoothly down along the shirt fabric from chest level to the side of the waist, keeping continuous contact.\",\n        \"right_arm_action\": \"Resting naturally at the side.\"\n      },\n      {\n        \"timestamp\": \"00:04 - 00:07\",\n        \"head_movement\": \"Keeps head upright, looking straight ahead.\",\n        \"left_arm_action\": \"Brings left hand to center abdomen to lightly stretch and adjust the shirt fit forward.\",\n        \"right_arm_action\": \"Brings right hand to center abdomen simultaneously to aid in gently pulling and settling the shirt, then slides right hand back down.\",\n        \"secondary_movement\": \"Left hand moves to the bottom left hem of the shirt for a final subtle tug downwards.\"\n      },\n      {\n        \"timestamp\": \"00:08 - 00:11\",\n        \"head_movement\": \"Maintains steady direct eye contact with camera, soft smile.\",\n        \"left_arm_action\": \"Rests naturally at the left side after letting go of the shirt.\"\n      }\n    ]\n  }\n}",
+        howTo: ""
+      },
+      {
+        id: 118,
+        category: "masculinos",
+        categoryName: "🎬 MASCULINOS",
+        title: "REFORÇO/CTA FINAL: FECHAR ZÍPER DA GOLA E APONTAR PARA BAIXO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786384159795-wou0ia-video5159435189234960350.mp4",
+        prompt: "{\n  \"prompt\": {\n    \"quality_settings\": {\n      \"resolution\": \"8K\",\n      \"sharpness\": \"high sharpness\",\n      \"clarity\": \"crystal clear details\",\n      \"realism\": \"photorealistic, natural texture, realistic lighting, smooth frame rate, ultra-detailed\"\n    },\n    \"character_motion_sequence\": [\n      {\n        \"step\": 1,\n        \"action\": \"Waist adjustment\",\n        \"description\": \"Gently pulls down and aligns the lower hem of the shirt using both hands on the sides of the waist to perfect the fit.\"\n      },\n      {\n        \"step\": 2,\n        \"action\": \"Smooth zipper closing and chest adjustment\",\n        \"description\": \"Smoothly brings fingers to the zipper handle, carefully pulling it up in a clear, fluid, realistic motion to close the collar zipper, then slides hands gently over the chest to highlight the shirt's fit.\"\n      },\n      {\n        \"step\": 3,\n        \"action\": \"Posture alignment\",\n        \"description\": \"Returns hands near waist level briefly, erects posture naturally, opens shoulders, and maintains a confident direct gaze forward.\"\n      },\n      {\n        \"step\": 4,\n        \"action\": \"Angled torso rotation\",\n        \"description\": \"Performs a subtle, organic torso rotation to the side, showcasing sleeve fit and side seams, then smoothly returns to a frontal position.\"\n      },\n      {\n        \"step\": 5,\n        \"action\": \"Final gesture and smile\",\n        \"description\": \"Concludes by quickly pointing downward using the index finger of the right hand in a brief, smooth motion, finishing with a warm, charismatic smile towards the camera.\"\n      }\n    ],\n    \"motion_style\": {\n      \"pacing\": \"natural and continuous\",\n      \"speed\": \"moderate, fluid speed with emphasis on clear hand-object interactions\",\n      \"transitions\": \"seamless and organic without sharp cuts or artificial lag\"\n    }\n  }\n}",
+        howTo: ""
+      },
+      {
+        id: 119,
+        category: "masculinos",
+        categoryName: "🎬 MASCULINOS",
+        title: "GANCHO/REFORÇO: ESTALO ELÁSTICO SNAP NO PEITORAL (8K AUDIO)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786384658558-ahlhnk-img-0432.mp4",
+        prompt: "{\n  \"motion_prompt\": \"Ultra-realistic 8K high-definition video sequence. Precise elastic fabric snap sequence executed by the right hand: 1. Initial Grip: Right hand pinches a central chest section of elastic compression fabric using the thumb and forefinger. 2. Tension & Pull: Hand firmly pulls the high-elasticity fabric outward away from the torso, exhibiting natural material tension, micro-stretches, and resistance dynamics. 3. Release & Impact: Fingers rapidly release the pulled fabric, triggering high-velocity recoil snap back toward the chest, striking the torso and instantly settling flush against the body. Technical requirements: 60fps fluid motion, zero visual artifacts, photorealistic material physics, cinematic lighting, 8K render quality.\",\n  \"audio_prompt\": \"High-tension fabric stretching sound effect followed by a sharp, crisp, high-velocity elastic snap sound as the material recoils and strikes the chest wall. Clean impact audio, ultra-high fidelity.\"\n}",
+        howTo: ""
+      }
+    ];
+
+    // Gerenciador de Estado
+    let currentCategory = 'all';
+    let searchQuery = '';
+    let isDenseGrid = false;
+
+    const grid = document.getElementById('video-grid');
+    const emptyState = document.getElementById('empty-state');
+    const counterEl = document.getElementById('counter');
+    const searchInput = document.getElementById('search-input');
+    const topicButtons = document.querySelectorAll('.topic-chip');
+    const gridToggleBtn = document.getElementById('grid-toggle-btn');
+    const gridToggleText = document.getElementById('grid-toggle-text');
+
+    // Notificação Toast Verde
+    function triggerToast(text, icon = 'check') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+
+      toastMessage.textContent = text;
+      toastIcon.innerHTML = `<i data-lucide="${icon}" class="w-4 h-4"></i>`;
+      lucide.createIcons({ root: toastIcon });
+
+      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+      }, 2400);
+    }
+
+    // Copiar Texto com Fallback Seguro
+    function copyText(str, msg) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(str)
+          .then(() => triggerToast(msg))
+          .catch(() => fallbackCopy(str, msg));
+      } else {
+        fallbackCopy(str, msg);
+      }
+    }
+
+    function fallbackCopy(str, msg) {
+      const ta = document.createElement("textarea");
+      ta.value = str;
+      ta.style.position = "fixed";
+      ta.style.left = "-999999px";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try {
+        document.execCommand('copy');
+        triggerToast(msg);
+      } catch (err) {
+        triggerToast("Falha ao copiar", "alert-circle");
+      }
+      document.body.removeChild(ta);
+    }
+
+    function escapeHtml(text) {
+      return (text || '')
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Pausar vídeos que saem da tela com IntersectionObserver
+    let observer;
+    function initVideoObserver() {
+      if (observer) observer.disconnect();
+
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          if (!entry.isIntersecting && !video.paused) {
+            video.pause();
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('video').forEach(vid => observer.observe(vid));
+    }
+
+    // Renderização Principal dos Vídeos
+    function renderVideos() {
+      const filtered = allVideos.filter(item => {
+        const q = searchQuery.toLowerCase();
+        const matchesQuery = !q || 
+          item.title.toLowerCase().includes(q) || 
+          item.prompt.toLowerCase().includes(q) || 
+          item.categoryName.toLowerCase().includes(q) ||
+          (`#${item.id}`).includes(q) || 
+          (item.howTo && item.howTo.toLowerCase().includes(q));
+
+        const matchesCategory = (currentCategory === 'all') || (item.category === currentCategory);
+
+        return matchesQuery && matchesCategory;
+      });
+
+      counterEl.textContent = filtered.length;
+      grid.innerHTML = '';
+
+      if (filtered.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      filtered.forEach((item) => {
+        const card = document.createElement('article');
+        card.className = "bg-brand-card/95 border border-brand-cardBorder hover:border-brand-hoverBorder rounded-3xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 hover:translate-y-[-2px] group";
+
+        const hasHowTo = item.howTo && item.howTo.trim().length > 0;
+
+        card.innerHTML = `
+          <!-- Header do Card -->
+          <div class="px-4 py-3 border-b border-brand-cardBorder/70 flex items-center justify-between gap-2 bg-[#0C1017]/90">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="w-2 h-2 rounded-full bg-emeraldNeon shrink-0 animate-pulse"></span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-emeraldLight px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 truncate">
+                ${escapeHtml(item.categoryName)}
+              </span>
+            </div>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-white/5 text-slate-400 font-bold border border-white/5 shrink-0">
+              #${item.id}
+            </span>
+          </div>
+
+          <!-- Banner Dourado com Título da Ação -->
+          <div class="bg-gradient-to-r from-amber-400 via-gold to-amber-500 px-3.5 py-2 text-center font-display text-xs font-extrabold text-black truncate" title="${escapeHtml(item.title)}">
+            ${escapeHtml(item.title)}
+          </div>
+
+          <!-- Video Player 9:16 -->
+          <div class="relative aspect-[9/16] bg-black/95 w-full overflow-hidden flex items-center justify-center">
+            <video 
+              id="vid-${item.id}"
+              src="${item.url}"
+              class="w-full h-full object-cover cursor-pointer"
+              loop
+              playsinline
+              controls
+              preload="metadata"
+            ></video>
+
+            <!-- Botão Flutuante de Link Direto -->
+            <button 
+              onclick="copyText('${item.url}', 'Link .mp4 copiado!')"
+              title="Copiar link direto do vídeo" 
+              class="absolute top-2.5 right-2.5 p-2 rounded-xl bg-black/60 hover:bg-black/90 backdrop-blur-md border border-white/10 text-slate-300 hover:text-emeraldLight transition-all transform hover:scale-105 active:scale-95 shadow-lg"
+            >
+              <i data-lucide="link" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+          <!-- Área de Prompt & Conteúdo -->
+          <div class="p-4 flex-1 flex flex-col justify-between gap-3.5 bg-brand-card">
+            
+            <div class="space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-extrabold uppercase tracking-widest text-emeraldLight flex items-center gap-1.5">
+                  <i data-lucide="terminal" class="w-3.5 h-3.5 text-gold"></i>
+                  Prompt Vesper
+                </span>
+                <span class="text-[10px] text-slate-400 font-mono">9:16 HD</span>
+              </div>
+
+              <!-- Caixa de Texto do Prompt com Scroll -->
+              <pre class="custom-scroll p-3 rounded-2xl bg-[#090C12] border border-brand-cardBorder/90 text-[11px] leading-relaxed font-mono text-slate-300 h-36 overflow-y-auto whitespace-pre-wrap select-all focus:outline-none focus:border-emeraldNeon/40 transition-colors">${escapeHtml(item.prompt)}</pre>
+
+              <!-- Caixa 'Como Usar' (quando existir) -->
+              ${hasHowTo ? `
+                <div class="p-2.5 rounded-xl border border-emeraldNeon/25 bg-emeraldNeon/5">
+                  <span class="text-[9px] font-extrabold uppercase tracking-widest text-emeraldLight block mb-1 flex items-center gap-1">
+                    <i data-lucide="info" class="w-3 h-3"></i> Instruções de uso
+                  </span>
+                  <p class="text-[11px] leading-tight text-slate-300 font-medium">${escapeHtml(item.howTo)}</p>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="grid grid-cols-2 gap-2 pt-1 border-t border-brand-cardBorder/50">
+              <button 
+                onclick="copyPromptBtn(this, ${item.id})"
+                class="inline-flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-gradient-to-r from-emerald-500 via-emeraldNeon to-teal-400 hover:brightness-110 active:scale-[0.98] text-black font-extrabold text-[11px] uppercase tracking-wider shadow-md transition-all duration-200"
+              >
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Copiar Prompt</span>
+              </button>
+
+              <button 
+                onclick="copyText('${item.url}', 'Link .mp4 copiado!')"
+                class="inline-flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-[#141B26] hover:bg-[#1C2637] active:scale-[0.98] border border-brand-cardBorder text-slate-200 font-semibold text-[11px] transition-all duration-200"
+              >
+                <i data-lucide="download" class="w-3.5 h-3.5 text-gold"></i>
+                <span>Copiar Link</span>
+              </button>
+            </div>
+
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      lucide.createIcons();
+      initVideoObserver();
+    }
+
+    // Feedback visual ao copiar prompt
+    function copyPromptBtn(btn, id) {
+      const item = allVideos.find(v => v.id === id);
+      if (!item) return;
+
+      copyText(item.prompt, `Prompt #${id} copiado com sucesso!`);
+
+      const origHtml = btn.innerHTML;
+      btn.innerHTML = `
+        <i data-lucide="check" class="w-3.5 h-3.5"></i>
+        <span>Copiado!</span>
+      `;
+      btn.classList.add('brightness-125');
+      lucide.createIcons({ root: btn });
+
+      setTimeout(() => {
+        btn.innerHTML = origHtml;
+        btn.classList.remove('brightness-125');
+        lucide.createIcons({ root: btn });
+      }, 1600);
+    }
+
+    // Eventos de Busca
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      renderVideos();
+    });
+
+    // Eventos de Filtro por Categoria
+    topicButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        topicButtons.forEach(b => {
+          b.classList.remove('bg-emeraldNeon', 'text-black', 'glow-emerald');
+          b.classList.add('bg-brand-card', 'text-slate-300', 'border', 'border-brand-cardBorder');
+        });
+
+        btn.classList.remove('bg-brand-card', 'text-slate-300', 'border-brand-cardBorder');
+        btn.classList.add('bg-emeraldNeon', 'text-black', 'glow-emerald');
+
+        currentCategory = btn.getAttribute('data-category');
+        renderVideos();
+      });
+    });
+
+    // Alternador de Densidade de Grade
+    gridToggleBtn.addEventListener('click', () => {
+      isDenseGrid = !isDenseGrid;
+      if (isDenseGrid) {
+        grid.className = "grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto";
+        gridToggleText.textContent = "Modo Expandido (2 Col)";
+      } else {
+        grid.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6";
+        gridToggleText.textContent = "Grade 4 Colunas";
+      }
+    });
+
+    // Hover para Preview Rápido
+    document.addEventListener('mouseover', (e) => {
+      if (e.target.tagName === 'VIDEO') {
+        const playPromise = e.target.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      if (e.target.tagName === 'VIDEO') {
+        e.target.pause();
+      }
+    });
+
+    // Inicialização
+    window.addEventListener('DOMContentLoaded', () => {
+      renderVideos();
+    });
+  </script>
+</body>
+</html>
