@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VESPER PROMPTS — Biblioteca Exclusiva</title>
+  <title>VESPER PROMPTS — 151 Vídeos & Prompts</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -31,11 +31,11 @@
             emeraldLight: '#34D399',
             emeraldGlow: 'rgba(16, 185, 129, 0.45)',
             brand: {
-              bg: '#080A0E',
-              surface: '#0E121A',
-              card: '#121722',
-              cardBorder: '#1A2232',
-              hoverBorder: '#233046'
+              bg: '#07090D',
+              surface: '#0B0F17',
+              card: '#0F1520',
+              cardBorder: '#1A2332',
+              hoverBorder: '#28384F'
             }
           }
         }
@@ -50,29 +50,22 @@
       height: 5px;
     }
     .custom-scroll::-webkit-scrollbar-track {
-      background: rgba(8, 10, 14, 0.7);
+      background: rgba(7, 9, 13, 0.7);
       border-radius: 4px;
     }
     .custom-scroll::-webkit-scrollbar-thumb {
-      background: #1C2638;
+      background: #1B2536;
       border-radius: 4px;
     }
     .custom-scroll::-webkit-scrollbar-thumb:hover {
       background: #10B981;
     }
 
-    /* Glows and aesthetic accents */
     .glow-emerald {
-      box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.45);
+      box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.4);
     }
     .text-glow-emerald {
-      text-shadow: 0 0 16px rgba(16, 185, 129, 0.55);
-    }
-    .glow-gold {
-      box-shadow: 0 0 18px -3px rgba(229, 169, 60, 0.35);
-    }
-    .gradient-header-badge {
-      background: linear-gradient(135deg, rgba(16,185,129,0.2) 0%, rgba(229,169,60,0.15) 100%);
+      text-shadow: 0 0 16px rgba(16, 185, 129, 0.5);
     }
   </style>
 </head>
@@ -102,21 +95,21 @@
               VESPER PROMPTS
             </h1>
             <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emeraldLight border border-emerald-500/30">
-              119 VÍDEOS
+              151 VÍDEOS
             </span>
           </div>
-          <p class="text-xs text-slate-400 font-medium">Biblioteca exclusiva de prompts e produções audiovisuais</p>
+          <p class="text-xs text-slate-400 font-medium">Biblioteca completa de prompts e vídeos verticais 9:16</p>
         </div>
       </div>
 
-      <!-- Barra de Pesquisa e Alternador de Grid -->
+      <!-- Barra de Pesquisa e Controles de Visualização -->
       <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto">
         <div class="relative w-full sm:w-80">
           <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
           <input 
             type="text" 
             id="search-input" 
-            placeholder="Buscar por tópico, título, prompt ou #ID..." 
+            placeholder="Buscar por tópico, prompt ou #ID..." 
             class="w-full pl-10 pr-4 py-2 bg-brand-card border border-brand-cardBorder rounded-xl text-xs sm:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emeraldNeon/70 focus:ring-1 focus:ring-emeraldNeon/40 transition-all"
           />
         </div>
@@ -124,7 +117,7 @@
         <div class="flex items-center gap-2 self-end sm:self-auto shrink-0">
           <button 
             id="grid-toggle-btn"
-            title="Alternar entre Grade Padrão e Grade Ampla"
+            title="Alternar entre Grade Padrão e Grade Expandida"
             class="px-3.5 py-2 bg-brand-card border border-brand-cardBorder rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:border-emeraldNeon/50 transition-all flex items-center gap-2"
           >
             <i data-lucide="layout-grid" class="w-4 h-4 text-emeraldLight"></i>
@@ -132,19 +125,22 @@
           </button>
           
           <div class="px-3.5 py-2 bg-brand-card border border-brand-cardBorder rounded-xl text-xs font-bold text-slate-300 shrink-0">
-            Exibindo: <span id="counter" class="text-emeraldLight font-extrabold">119</span> / 119
+            Exibindo: <span id="counter" class="text-emeraldLight font-extrabold">151</span> / 151
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Filtros de Tópicos / Pastas -->
+    <!-- Filtros de Tópicos (9 Categorias) -->
     <div class="max-w-[1780px] mx-auto px-4 sm:px-6 py-2.5 border-t border-brand-cardBorder/50 overflow-x-auto custom-scroll flex items-center gap-2">
       <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 shrink-0 mr-1 flex items-center gap-1">
         <i data-lucide="folder" class="w-3.5 h-3.5 text-emeraldLight"></i> Tópicos:
       </span>
       <button data-category="all" class="topic-chip px-3 py-1 rounded-full text-xs font-bold transition-all bg-emeraldNeon text-black glow-emerald shrink-0">
-        Todos (119)
+        Todos (151)
+      </button>
+      <button data-category="pov-roupas" class="topic-chip px-3 py-1 rounded-full text-xs font-semibold transition-all bg-brand-card border border-brand-cardBorder text-slate-300 hover:border-emeraldNeon/50 shrink-0">
+        🎬 POV ROUPAS (32)
       </button>
       <button data-category="femininos" class="topic-chip px-3 py-1 rounded-full text-xs font-semibold transition-all bg-brand-card border border-brand-cardBorder text-slate-300 hover:border-emeraldNeon/50 shrink-0">
         🎬 FEMININOS (56)
@@ -182,7 +178,7 @@
         <i data-lucide="video-off" class="w-8 h-8 text-emeraldLight"></i>
       </div>
       <h3 class="text-base font-bold text-slate-200 font-display">Nenhum resultado encontrado</h3>
-      <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Tente buscar por outras palavras-chave ou alterne o tópico acima.</p>
+      <p class="text-xs text-slate-400 mt-1 max-w-sm mx-auto">Tente buscar por outras palavras-chave ou selecione outra categoria.</p>
     </div>
 
     <!-- Grid de Vídeos -->
@@ -192,11 +188,301 @@
   </main>
 
   <script>
-    // Coleção completa de todos os 119 vídeos extraídos dos tópicos solicitados
-    const allVideos = [
-      // ==========================================
-      // 1. 🎬 CASAL (6 Vídeos)
-      // ==========================================
+    // Base de dados com os 151 itens (Incluindo os 32 de POV Roupas)
+    const povRoupas = [
+      {
+        id: "POV-1",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "GANCHO INICIAL: RETIRAR EMBALAGEM DA CAIXA DE CORREIOS, ABRIR, RETIRAR ROUPA E TAMPAR LENTE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-06/1788658031461-Creating_vertical_POV_clothing_v-_202609052138.mp4",
+        prompt: "Crie um vídeo vertical (formato 9:16) em primeira pessoa (POV) e ultra-realista, utilizando as imagens de referência em anexo. Preserve EXATAMENTE a embalagem do TikTok Shop e a peça de roupa mostradas nas referências.\nPrimeira cena: mãos femininas abrem uma caixa de correio na frente na casa da terceira imagemanexada, pegam a embalagem do TikTok Shop e a retiram rapidamente.\nEm seguida, corte diretamente para uma tomada em primeira pessoa (POV) de cima para baixo, focada em uma cama bem arrumada. As mesmas mãos abrem rapidamente a MESMA embalagem, retiram a EXATA peça de roupa de referência, desdobram-na completamente e a estendem sobre a cama. Uma das mãos passa suavemente sobre a roupa, alisando o tecido e exibindo seus detalhes, finaliza tampando completamente a lente da câmera com a palma da mão.\nMantenha a continuidade perfeita da embalagem, do produto e das mãos entre as duas cenas. A câmera em si NUNCA deve aparecer. Não inclua celulares, câmeras, dispositivos de gravação, rostos, objetos ou produtos extras, palavras escritas, legendas, rótulos adicionados ao vídeo, títulos, elementos gráficos ou sobreposições de imagem. Apenas as informações de envio já presentes fisicamente na embalagem de referência podem permanecer visíveis.",
+        howTo: "EMBALAGEM + ROUPA + CENÁRIO (FRENTE DE UMA CASA, JARDIM, PRÉDIO E AFINS). OBS: AS MÃOS PODEM SER SUBSTITUIDAS POR MASCULINAS."
+      },
+      {
+        id: "POV-2",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "USE A IMAGEM PRONTA DO PRODUTO (TOP-DOWN CARPETE PEÇA 1 E 2)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787053740500-yljw0q-hands-demonstrating-clothing-pro-202608180847.mp4",
+        prompt: "Formato e Enquadramento: Vídeo realista de demonstração de produto com visão de cima para baixo (top-down). Câmera totalmente fixa do início ao fim. Use a imagem fornecida como referência principal, PRESERVANDO a iluminação, o enquadramento, a disposição original das roupas, as mãos femininas, as unhas brancas e as pulseiras.\n\nAção Sequencial (Apenas Duas Peças, Uma por Vez):\n\nPrimeira Peça: As mãos pegam delicadamente a primeira peça do carpete, aproximam-na da câmera para exibir os detalhes, esticam suavemente o tecido para demonstrar o material, seguram por um breve momento e a devolvem exatamente à sua posição original.\n\nSegunda Peça: Após recolocar a primeira peça, as mãos movem-se para a segunda peça e repetem a mesma sequência exata: levantam apenas ela, aproximam da câmera, mostram os detalhes, esticam levemente o tecido, seguram brevemente e a recolocam exatamente no mesmo local original.\n\nEstilo de Movimento e Física:\nMovimentos elegantes, suaves, controlados e naturais. As demais peças da composição que não estão sendo manuseadas devem permanecer completamente imóveis.\n\nRestrições Estritas:\nSem movimento de câmera, sem zoom, sem cortes, sem transições, sem alterar o arranjo das peças, SEM MUDAR TECIDO E TEXTURA DO TECIDO, sem manusear duas peças simultaneamente, sem produtos extras, sem mãos distorcidas e sem deformação irrealista do tecido.",
+        howTo: ""
+      },
+      {
+        id: "POV-3",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "USE A IMAGEM PRONTA DO PRODUTO (REMOÇÃO INDIVIDUAL DAS PEÇAS)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787052028068-q5xaz1-hands-removing-clothing-from-carpet-202608180818.mp4",
+        prompt: "Cena e Câmera: Vídeo de fechamento realista com câmera totalmente fixa em perspectiva vertical de cima para baixo (top-down). Mantenha o fundo de carpete, a iluminação, o enquadramento, as mãos femininas, as unhas brancas, as pulseiras e a disposição exata das roupas da imagem de referência.\n\nAção Passo a Passo (Remoção Individual):\n\nO vídeo começa com todas as peças de roupa visíveis e dispostas na cena.\n\nAs mãos pegam suavemente apenas uma peça por vez, puxam-na para fora do enquadramento pelas laterais e retornam à cena para pegar a próxima.\n\nRepita a sequência até que todas as peças tenham sido removidas individualmente.\n\nRegra de Ouro: Cada item deve permanecer imóvel até chegar a sua vez. Nunca remova duas peças juntas ou arraste tudo de uma vez.\n\nEstilo e Finalização:\nMovimentos lentos, elegantes, suaves e controlados. O vídeo encerra com todas as peças fora do enquadramento, mostrando apenas o fundo do carpete totalmente vazio.\n\nRestrições Estritas:\nSem movimento de câmera, sem zoom, sem cortes, sem transições, sem produtos extras, sem mãos distorcidas, SEM MUDAR O TECIDO E TEXTURA DO TECIDO, sem deformação de tecido e sem remoção simultânea de peças.",
+        howTo: ""
+      },
+      {
+        id: "POV-4",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "DEMONSTRAÇÃO EM 2 ETAPAS (UMA PEÇA POR VEZ)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786652290339-b4m0wd-322b3d78-9a9b-4f33-87ac-5219fd14e52b.mp4",
+        prompt: "Vídeo realista de demonstração de produto (8 segundos), câmera fixa em perspectiva vertical de cima para baixo (top-down). Use a imagem de referência como base, mantendo exatamente o carpete, a iluminação, o enquadramento, as mãos femininas, as unhas brancas, as pulseiras e a disposição original das duas peças de roupa.\n\nDemonstração em 2 Etapas (uma peça por vez):\n\nPrimeira Peça (a que está por cima): As mãos pegam e levantam a primeira peça. Uma mão segura firmena lateral da peça o tempo todo (sem soltar) aproximando-a da câmera. A outra mão desliza lentamente os dedos sobre o tecido para destacar textura, maciez, textura, pontos, costuras e flexibilidade. Nunca use ambas as mãos para acariciar o tecido ao mesmo tempo. Em seguida, devolva a peça cuidadosamente à sua posição original exata.\n\nSegunda Peça (a que estava por baixo): Após a primeira peça retornar ao lugar, repita exatamente a mesma sequência com a segunda peça: levante, mantenha apoiada por uma mão, aproxime da câmera, deslize a mão livre sobre o tecido para destacar textura, maciez, textura, pontos, costuras e flexibilidade. e devolva à posição inicial.\n\nRegras de Física e Estética: Tecidos com peso e caimento realista sob a gravidade, sem flutuar ou mover-se de forma independente. O vídeo termina com ambas as peças exatamente em suas posições originais da imagem de referência.\n\nRestrições estritas: Sem movimento de câmera, sem zoom, sem cortes, sem transições, sem produtos extras, sem mãos distorcidas, sem dedos extras, sem tecidos deformados, duros ou física irrealista.",
+        howTo: ""
+      },
+      {
+        id: "POV-5",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "BLUSA MANGA LONGA BRANCA EM EDREDOM VERMELHO (TOP-DOWN)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786587771578-w5vs0z-video5096291026725766992-1-.mp4",
+        prompt: "Ultra-realistic first-person POV product video, single continuous take, no cuts, no transitions, completely silent (mute), no speech, no voice, no narration, no dialogue, no lip movement, no audio generation.\n\nOnly two feminine hands are visible during the entire video. No face, no body, no arms above the wrists, no hair, no reflections, no shadows of a person.\n\nThe white long-sleeve blouse from the reference image is centered on a red quilt exactly as shown. Natural daylight, realistic home environment, smartphone camera, stable top-down view.\n\nThe camera remains fixed for almost the entire video.\n\nThe hands slowly enter from the bottom of the frame and gently touch both folded sleeves, making small natural adjustments to center the blouse.\n\nThe fingers softly glide over the collar, chest area and fabric, naturally highlighting the texture.\n\nThe hands gently stretch the fabric sideways at the waist with a very small movement to demonstrate elasticity, then release it smoothly.\n\nThe left sleeve is unfolded in one slow continuous motion. Immediately after, the right sleeve is unfolded in the same gentle manner.\n\nThe left cuff is lifted only a few centimeters and rotated slightly to reveal the stitching before being placed back down naturally.\n\nThe right cuff is demonstrated in exactly the same slow, controlled way.\n\nBoth hands then lightly smooth the sides of the blouse, removing small wrinkles and leaving the garment perfectly flat and symmetrical.\n\nOnly during the final second does the camera perform a very slow, subtle push-in toward the ruched waist area while the hands gently pull the fabric outward just enough to emphasize the shape, texture and finishing.\n\nThe movement of the hands must remain delicate, slow, continuous and realistic throughout the entire video. The blouse always remains fully visible.\n\nPhotorealistic smartphone footage, realistic fabric physics, soft natural lighting, stable image, organic movement, authentic product presentation.",
+        howTo: ""
+      },
+      {
+        id: "POV-6",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "GANCHO INICIAL: MÃO PEGA, APROXIMA E ESTICA TECIDO CANELADO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786587838001-xkrm1b-34f6260e-cf4c-4348-8bef-eb957e388ab0-1-1-1-.mp4",
+        prompt: "{ \"scene\": \"02_mao_pega_aproxima_e_estica\", \"platform\": \"VEO3\", \"aspect_ratio\": \"9:16\", \"duration\": \"2s\", \"audio\": \"sem fala, sem música, sem texto na tela\", \"prompt\": \"Crie um vídeo vertical 9:16, ultra realista, em estilo UGC de TikTok Shop. Uma mão feminina delicada, sem tatuagens, entra na cena, pega uma peça do kit do kit da imagem anexada, aproxima da câmera e estica levemente o tecido para demonstrar elasticidade, maciez e textura. O enquadramento deve destacar o canelado, a costura e o acabamento da peça. Ao fundo, as outras peças aparecem de forma desfocada sobre a  a superfície da imagem anexada. Movimento natural, suave, sem mãos extras, sem deformações, sem aparência de IA.\" }",
+        howTo: ""
+      },
+      {
+        id: "POV-7",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "JUNTA TODAS AS BLUSAS E REMOVE ATÉ DEIXAR VAZIO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786584560930-79z2al-grok-feddba28-06b6-4cf5-9202-f800ab6c36a3.mp4",
+        prompt: "uma mão entra no enquadramento, junta todos as blusas e remove suavemente as PEÇAS até deixar a superfície vazia, encerrando a demonstração. movimento natural movimento contínuo câmera estática sem alterações visuais",
+        howTo: ""
+      },
+      {
+        id: "POV-8",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "DESLIZANDO AS MÃOS E ALISANDO MANGAS E COSTURAS (TOP-DOWN)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786587722724-6i0j67-video5096291026725766993-1-.mp4",
+        prompt: "Ultra-realistic first-person POV product video, single continuous take, no cuts, no transitions, completely silent.\n\nOnly two feminine hands are visible during the entire video. No face, no body, no arms above the wrists, no hair, no reflections, no shadows.\n\nThe white blouse from the reference image is centered on a red quilt exactly as shown. Natural daylight, realistic home environment, smartphone camera, stable top-down view.\n\nThe camera remains fixed and stable throughout almost the entire video. Only during the final second it performs a very slow and subtle push-in toward the center of the blouse.\n\nThe hands slowly enter from the bottom of the frame.\n\nFirst, both hands gently pull the lower hem of the blouse downward a few centimeters, naturally straightening the garment without stretching it excessively.\n\nThe hands then slowly glide over the front of the blouse from the lower section toward the chest, softly smoothing the fabric and highlighting its texture with relaxed, delicate finger movements.\n\nNext, each hand naturally reaches one sleeve. The left hand holds the left sleeve while the right hand holds the right sleeve. The fingers slowly slide along each sleeve from the shoulder toward the cuffs, gently tracing the seams and fabric texture as if carefully presenting every detail.\n\nThe hands lightly lift each sleeve only a few centimeters, naturally rotating the cuffs to reveal the stitching before placing them back down.\n\nFinally, both hands gently smooth the blouse one last time, leaving it perfectly flat and symmetrical.",
+        howTo: ""
+      },
+      {
+        id: "POV-9",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "RASGANDO SACO PLÁSTICO COM PEÇAS DENTRO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786969708377-p16ojl-hands-tearing-plastic-bag-202608170926.mp4",
+        prompt: "Câmera e Cenário: Câmera totalmente fixa durante toda a cena (sem zoom, cortes ou mudanças de enquadramento). Cenário, iluminação, composição e produto permanecem exatamente os mesmos.\n\nAção e Física da Embalagem: usar a imagem um anexada de referencia\n\nNa cena, há apenas uma sacolinha plástica transparente contendo todas as peças juntas da imagem dois anexada.\n\nAs mãos seguram a sacolinha com firmeza e fazem um pequeno ajuste natural de posicionamento.\n\nEm seguida, exercem tensão visível no plástico e realizam um rasgo enérgico, firme e rápido no centro da embalagem, criando um gancho visual impactante.\n\nAs mãos continuam puxando e ampliando a abertura para as laterais, revelando o conjunto no interior.\n\nReação do Plástico: Comportamento e física realistas de saquinho transparente (tensão pré-rasgo, deformações naturais, abertura progressiva, bordas rasgadas verossímeis, transparência e amassados reais).\n\nPreservação do Produto (CRÍTICO):\n\nDurante e após o rasgo, as peças no interior da embalagem ( da imagem dois anexada) devem permanecer rigorosamente inalteradas: mesma cor, tecido, textura, modelagem, costura, estampa, quantidade, proporções e disposição.\n\nOs itens não podem se transformar, trocar de aparência, deformar ou sair sozinhos da embalagem.\n\nÁudio Integrado:\n\nIncluir som fotorrealista e nítido de plástico transparente sendo rasgado com firmeza (barulho de embalagem nova de roupa abrindo).\n\nSem falas, sem música e sem efeitos sonoros artificiais.",
+        howTo: ""
+      },
+      {
+        id: "POV-10",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "RETIRAR SHORTS DE CENA (MARROM, PRETO E ROSA)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786587935213-yq3hvh-as-duas-maos-feminina-com-202606261004-1-.mp4",
+        prompt: "As duas mãos feminina com unhas curtas sem esmalte, delicaca e real entram no enquadramento por lados opostos pega o short marrom depois o preto e depois o rosa de cena, o short e as mão saem de cena.  Manter fidelidade total ao design original do produto (sem alterar formato, cor, textura ou acabamento). Sem distorções, sem elementos extras. sem logos sem textos na tela sem marcas adicionais sem distorções sem objetos inconsistentes",
+        howTo: "ADAPTAR PROMPT PARA SUA PEÇA"
+      },
+      {
+        id: "POV-11",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "TESTANDO ELASTICIDADE DO TECIDO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786540545743-9bkl3r-hand-testing-clothing-elasticity-202608121014.mp4",
+        prompt: "A câmera permanece em perspectiva POV, observando os roupas de cima, com movimento mínimo e natural de uma gravação real de celular.\n\nA mão feminina entra lentamente no quadro e realiza apenas uma ação principal: pega a blusa, aproxima da camera e estica para mostrar elasticidade, en seguida volta a peça em seu lugar incial\n\nA mão faz uma pequena pausa durante o contato e depois continua o movimento na sgunda peça de forma suave. Nada de gestos rápidos ou exagerados. A interação deve transmitir a sensação de alguém avaliando uma peça de roupa de perto.\n\nO tecido reage fisicamente ao contato: pequenas ondulações, dobras discretas e deslocamentos naturais surgem sob os dedos e retornam suavemente quando a pressão diminui. Não deformar excessivamente a peça.\n\nApenas uma mão aparece durante toda a interação. Nenhuma outra mão, objeto ou elemento novo entra na cena.\n\nPreservar fielmente o produto original durante todo o vídeo. Não modificar cor, modelagem, tamanho, textura, estampa, costura, acabamento ou proporções. As peças deve permanecer reconhecível exatamente como na referência.\n\nManter iluminação suave, atmosfera clean e minimalista, enquadramento POV e nitidez uniforme em toda a cena. O resultado deve parecer uma demonstração real e casual de produto/moda feita em casa.",
+        howTo: ""
+      },
+      {
+        id: "POV-12",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "REMOVER SUAVEMENTE TODAS AS PEÇAS DE CENA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786587874766-4mk2ak-665a4be6-f77d-4789-9807-d1a43716b05f-1-1-.mp4",
+        prompt: "uma mão entra no enquadramento, junta todos AS PEÇAS  e remove suavemente AS PEÇAS até deixar a superfície vazia, encerrando a demonstração. movimento natural movimento contínuo câmera estática sem alterações visuais",
+        howTo: "ADAPTE O PROMPT"
+      },
+      {
+        id: "POV-13",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "RASGANDO PACOTE E TAMPANDO A LENTE COM A PALMA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786818972904-6fowt0-5b68346b-498a-4f21-aa7e-3b14872334e7.mp4",
+        prompt: "As duas mãos femininas entram lentamente no quadro e pegam o pacote com movimentos naturais e sem pressa. As mãos seguram o plástico delicadamente, fazem uma breve pausa e pressionam levemente a embalagem, como se sentissem a peça através do plástico. Em seguida, as duas mãos seguram firmemente lados opostos do saco e realizam uma única ação principal: rasgam o plástico de maneira gradual e realista. O plástico enruga, estica e se rompe com física natural, produzindo um som diegético realista de plástico rasgando em segui ela leva a palma de uma das mãos e tampa toda a lente da camera, sem fala ou voz humana. O movimento permanece lento, controlado e fácil de interpolar. A peça dentro do saco permanece estável e sem deformações artificiais.",
+        howTo: ""
+      },
+      {
+        id: "POV-14",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "GANCHO INICIAL: RASGA O PLÁSTICO E RETIRA A PEÇA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786501231570-h54b61-removing-clothing-from-plastic-bag-202608112318.mp4",
+        prompt: "Uma das mãos retira lentamente a [PEÇA] de dentro do saco plástico, enquanto a outra mão sustenta o tecido. A peça desliza naturalmente para fora da embalagem, com o tecido formando dobras suaves e realistas. Depois de retirar completamente a peça, a mão posiciona o plástico rasgado cuidadosamente para o lado do enquadramento. A peça permanece centralizada. Os movimentos são lentos, delicados e contínuos, com pequenas pausas naturais. O tecido reage à gravidade de forma realista, sem movimentos exagerados ou deformações.",
+        howTo: "USE A IMAGEM PRONTA DO PRODUTO"
+      },
+      {
+        id: "POV-15",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "ARRANJO DE PEÇAS NO TAPETE — VISÃO PERPENDICULAR",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786505956430-q1n1sl-hands-manipulating-shirt-on-rug-202608120037.mp4",
+        prompt: "Usar exatamente a imagem de referência fornecida como base visual e preservar sua composição original. Enquadramento vertical 9:16, câmera posicionada diretamente acima do cenário, em visão aérea perfeitamente perpendicular, completamente fixa. Manter exatamente o mesmo tapete, textura do fundo, iluminação, temperatura de cor, sombras, enquadramento e escala visual da referência. O arranjo das peças permanece intacto, com mesma quantidade, cores, modelos, orientação e posicionamento.\n\nAs mesmas mãos femininas da imagem de referência aparecem no quadro, mantendo exatamente as unhas brancas, pulseiras, anéis e demais acessórios. Apenas uma peça específica do arranjo será manipulada. As outras peças permanecem imóveis e não são tocadas. A peça escolhida está posicionada de maneira natural no arranjo, pronta para ser levantada pelas mãos.\n\nA cena possui aparência de UGC realista gravado com celular, sem estética publicitária excessivamente produzida. Estrutura natural do ambiente da imagem anexada , fibras naturais do tecido, pequenas sombras de contato e iluminação suave e consistente. A peça é o único elemento que receberá atenção durante a ação.",
+        howTo: ""
+      },
+      {
+        id: "POV-16",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "MÃOS SEGURANDO BLUSA BEGE PELAS LATERAIS",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786506406850-lnblv9-hands-holding-beige-blouse-202608120043.mp4",
+        prompt: "Usar a imagem fornecida como referência visual principal e reproduzir fielmente sua composição. Enquadramento vertical 9:16, câmera totalmente posicionada acima da superfície, em visão aérea perpendicular, exatamente no mesmo ângulo da imagem original. A câmera permanece fixa. Preservar integralmente o tapete, sua textura, iluminação, temperatura de cor, sombras, enquadramento e profundidade visual.\n\nManter exatamente as mesmas mãos femininas da referência, com o mesmo tom de pele, unhas brancas, pulseiras e acessórios. O arranjo das roupas permanece intacto. A única peça selecionada é a primeira blusa visível na parte superior do arranjo. Ela está claramente identificável e separada visualmente das demais peças.\n\nAs mãos estão posicionadas naturalmente nas duas laterais da blusa bege, segurando somente essa peça. As demais roupas permanecem completamente imóveis e não são tocadas. A blusa ocupa o centro da atenção visual, com sua cor, textura, trama e caimento preservados fielmente.\n\nEstética de demonstração de produto feita por uma pessoa real, com aparência de UGC fotorrealista, iluminação doméstica suave e textura natural de tecido. Nada deve parecer renderizado, artificial ou excessivamente produzido.",
+        howTo: ""
+      },
+      {
+        id: "POV-17",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "EXPLORANDO DELICADAMENTE O TECIDO COM OS DEDOS",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786540315058-f0zyku-hand-touching-clothing-fabric-202608121010.mp4",
+        prompt: "A câmera permanece em perspectiva POV, observando os roupas de cima, com movimento mínimo e natural de uma gravação real de celular.\n\nA mão feminina entra lentamente no quadro e realiza apenas uma ação principal: explorar delicadamente o tecido do produto com as pontas dos dedos.\n\nPrimeiro, os dedos pousam suavemente sobre a superfície de uma das peças. Em seguida, deslizam devagar pelo tecido, fazendo uma pressão leve e controlada para revelar visualmente sua textura e acabamento. O toque deve parecer espontâneo, cuidadoso e interessado na qualidade do material.\n\nA mão faz uma pequena pausa durante o contato e depois continua o movimento na sgunda peça de forma suave. Nada de gestos rápidos ou exagerados. A interação deve transmitir a sensação de alguém avaliando uma peça de roupa de perto.\n\nO tecido reage fisicamente ao contato: pequenas ondulações, dobras discretas e deslocamentos naturais surgem sob os dedos e retornam suavemente quando a pressão diminui. Não deformar excessivamente a peça.\n\nApenas uma mão aparece durante toda a interação. Nenhuma outra mão, objeto ou elemento novo entra na cena.\n\nPreservar fielmente o produto original durante todo o vídeo. Não modificar cor, modelagem, tamanho, textura, estampa, costura, acabamento ou proporções. As peças deve permanecer reconhecível exatamente como na referência.\n\nManter iluminação suave, atmosfera clean e minimalista, enquadramento POV e nitidez uniforme em toda a cena. O resultado deve parecer uma demonstração real e casual de produto/moda feita em casa.",
+        howTo: ""
+      },
+      {
+        id: "POV-18",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "GANCHO: ANDANDO PELA CASA COM ENCOMENDA TIKTOK SHOP",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-16/1789566157023-j2qtxwv8nh.mp4",
+        prompt: "Perspectiva estrita de primeira pessoa (POV); modelo da imagem um anexada filmando um unboxing espontâneo para o TikTok Shop, gravação em prime pessoa . A influenciadora caminha naturalmente pela casa da imagem de referência dois anexada com uma pacote de plástico preto com uma etiqueta do TikTok shop em sua mãos , coloca o pacote sobre a mesa da cozinha e começa a abri-lo. A câmera acompanha o movimento de suas mãos de forma natural. Ela tem uma leve dificuldade com a embalagem, rasga o plástico de forma natural e humana,  remove a exatamente a roupa da imagem três anexada. Em seguida, ela levanta o produto em direção à câmera até tampar completamente a lente e ficar tudo preto (use isso como uma transição). Imagens autênticas captadas com smartphone na mão, luz natural do dia no Brasil, ambiente doméstico realista, enquadramento imperfeito, mudanças sutis de foco automático, sons e movimentos realistas da embalagem, sem estabilização cinematográfica, sem visão em terceira pessoa, sem mostrar o rosto, sem diálogos, sem legendas, sem texto.",
+        howTo: "MODELO + AMBIENTE + ROUPA. CASO QUEIRA MUDE A SUPERFICIE ONDE ELA APOIA A ENCOMENDA"
+      },
+      {
+        id: "POV-19",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "RASGANDO EMBALAGEM PLÁSTICA COM SOM DIEGÉTICO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786500498712-dfoxhm-hands-tearing-plastic-package-202608112305.mp4",
+        prompt: "As duas mãos femininas entram lentamente no quadro e pegam o pacote com movimentos naturais e sem pressa. As mãos seguram o plástico delicadamente, fazem uma breve pausa e pressionam levemente a embalagem, como se sentissem a peça através do plástico. Em seguida, as duas mãos seguram firmemente lados opostos do saco e realizam uma única ação principal: rasgam o plástico de maneira gradual e realista. O plástico enruga, estica e se rompe com física natural, produzindo um som diegético realista de plástico rasgando, sem fala ou voz humana. O movimento permanece lento, controlado e fácil de interpolar. A peça dentro do saco permanece estável e sem deformações artificiais.",
+        howTo: ""
+      },
+      {
+        id: "POV-20",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "ALISANDO TECIDO EM DIREÇÕES SUAVES (ASMR UNBOXING)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786501798066-orz7co-hands-smoothing-fabric-texture-202608112328.mp4",
+        prompt: "As duas mãos realizam apenas uma ação principal: alisam e ajeitam lentamente o tecido da [PEÇA] em direções suaves e naturais, começando próximas ao centro e deslizando delicadamente para as laterais. As mãos fazem uma pausa sutil e repetem um movimento curto para revelar a textura, cor e acabamento da peça. O tecido responde naturalmente à pressão dos dedos, formando e desfazendo pequenas rugas de maneira realista. O movimento é calmo, contínuo e satisfatório, com estética ASMR de unboxing. Manter a câmera completamente superior e estável, sem zoom, sem panorâmica e sem movimentos cinematográficos. A peça permanece sempre no centro e claramente visível.",
+        howTo: ""
+      },
+      {
+        id: "POV-21",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "COLOCANDO UMA PEÇA POR VEZ NO QUADRO SEQUENCIALMENTE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786502770918-oxth32-hands-organizing-clothes-sequent-202608112344.mp4",
+        prompt: "A câmera permanece completamente fixa em visão superior durante toda a ação. As mãos femininas entram pelo limite inferior do quadro trazendo APENAS UMA única peça de roupa por vez. A primeira peça é posicionada cuidadosamente no local exato correspondente à imagem de referência. As mãos soltam a peça suavemente, fazem apenas pequenos ajustes naturais para alinhar o tecido e então saem completamente do quadro. Após as mãos desaparecerem, inicia-se somente então a próxima ação: as mesmas mãos retornam trazendo uma segunda peça única. A segunda peça é colocada separadamente em sua posição final exata, recebe pequenos ajustes naturais e as mãos saem novamente. Repetir esse processo sequencialmente para cada peça existente na imagem de referência.\n\nCada ciclo deve ser claramente separado: trazer uma única peça, posicionar, ajustar, retirar as mãos, retornar vazias ou fora do quadro e somente depois trazer a próxima peça. Nunca colocar duas peças simultaneamente.",
+        howTo: ""
+      },
+      {
+        id: "POV-22",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "DISPOSIÇÃO DAS ROUPAS EM FORMA DE LEQUE NO TAPETE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786504855513-91ori3-organizing-clothes-for-video-rec-202608120019.mp4",
+        prompt: "Usar exatamente a imagem de referência fornecida como quadro inicial. Vista aérea totalmente perpendicular à superfície, câmera posicionada diretamente acima, sem inclinação. Todas as peças DAS ROUPAS DAS IMAGENS FORNECIDAS ESTÃO ORGANIZADAS EM FORMA DE LEQUE NA PRIMEIRAIMAGEM ENVIADA, preservando rigorosamente quantidade, cores, modelos, orientação, espaçamento, posição e proporções de cada peça. Manter exatamente o mesmo tapete, textura do fundo, iluminação, temperatura de cor, enquadramento e sombras da imagem original. As mesmas mãos femininas da referência, com unhas brancas, mesmas pulseiras e mesmos acessórios, posicionadas naturalmente dentro do enquadramento. O cenário deve parecer uma gravação UGC real feita com celular, extremamente fotorealista, com textura natural do tecido e iluminação consistente. Nenhuma peça deve estar parcialmente removida ou fora de posição no início.",
+        howTo: ""
+      },
+      {
+        id: "POV-23",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "UNBOXING OMNI FLASH — RASGA EMBALAGEM E COBRE LENTE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787005291838-hkorfw-9b0241e3-8917-495d-a8bc-5f432792e7df.mp4",
+        prompt: "PARTE 1 VÍDEO DE UNBOXING OMNI FLASH (10 segundos)\n\n{\n\"duration\": \"8 segundos\",\n\"aspect_ratio\": \"9:16\",\n\"format\": \"vídeo de produto UGC fotorrealista\",\n\"camera\": {\n\"angle\": \"vista aérea fixa de cima para baixo (top-down), aproximadamente 90 graus\",\n\"movement\": \"câmera estável, sem trepidação\",\n\"framing\": \"toda a área de trabalho e as peças de roupa permanecem visíveis\"\n},\n\"references\": {\n\"product_images\": \"Use as imagens de referência das roupas fornecidas no momento da geração como a fonte exata de referência para as peças.\",\n\"environment_image\": \"Use a imagem de referência do ambiente/cenário fornecida no momento da geração como a fonte exata de referência para o cenário.\" \n},\n\"timeline\": {\n\"0-2s\": \"Comece com a embalagem de roupa ou as peças dobradas posicionadas de forma natural no ambiente fornecido. Duas mãos femininas naturais entram no enquadramento e pegam a embalagem ou as peças.\",\n\"2-4s\": \"As mãos começam a abrir a embalagem e a retirar as peças. Realize movimentos naturais e realistas, semelhantes a um unboxing autêntico do TikTok Shop. A roupa torna-se visível gradualmente.\",\n\"4-6s\": \"As mãos retiram completamente a primeira peça e a desdobram delicadamente, permitindo que o tecido caia naturalmente. Levante e ajuste brevemente a peça para que seu formato e confecção fiquem claramente visíveis.\",\n\"6-8s\": \"A primeira peça é colocada de forma organizada no centro da cena. As mãos começam imediatamente a passando a mão de cima pra baixo na peça em formato de s mais de de forma natural.\"\n}\n}",
+        howTo: "IMAGEM BASE COM A EMBALAGEM NAS MÃOS + PRODUTO"
+      },
+      {
+        id: "POV-24",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "DEMONSTRAÇÃO DE BLUSA EM CLOSE E CARINHO NO TECIDO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1787053315578-eidel4-hands-showing-clothing-fabric-te-202608180840.mp4",
+        prompt: "Configuração da Cena e Câmera:\nVídeo realista de demonstração de produto (8 segundos), com câmera totalmente fixa em perspectiva vertical de cima para baixo (top-down). Mantenha exatamente o carpete, a iluminação, o enquadramento, as mãos femininas, as unhas brancas, as pulseiras e a disposição original das peças da imagem de referência.\n\nAção Única com o Produto:\n\nAs mãos femininas pegam naturalmente apenas uma das blusas da disposição.\n\nEstique levemente a blusa COM AS DUAS MÃOS para revelar o tecido e aproxime-a da câmera (mantendo a câmera imóvel).\n\nEnquanto segura a blusa PELA LATERAL bem posicionada COM UMA DAS MÃOS em close, use os dedos DA OUTRA MÃO para deslizar e acariciar suavemente o tecido, destacando sua textura e qualidade de forma fluida, elegante e natural.\n\nO foco e a ação devem permanecer exclusivamente nesta única peça durante todo o vídeo.",
+        howTo: ""
+      },
+      {
+        id: "POV-25",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "REMOÇÃO PROGRESSIVA E INDIVIDUAL DE CADA PEÇA ATÉ FUNDO VAZIO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786505290521-1ciavx-woman-removing-clothes-from-rug-202608120026.mp4",
+        prompt: "A câmera permanece absolutamente imóvel durante toda a sequência, mantendo exatamente a mesma visão superior da imagem de referência, sem zoom, inclinação, deslocamento ou mudança de enquadramento.\n\nAs mãos femininas começam retirando as peças de forma sequencial e individual. Primeiro, as mãos selecionam APENAS UMA peça de roupa. Seguram somente essa peça e a puxam lentamente para fora do enquadramento, em direção à lateral ou à parte inferior da cena. A peça sai completamente do quadro. As mãos então retornam ao enquadramento antes de iniciar a próxima remoção.\n\nSomente depois que a primeira peça desapareceu completamente, as mãos pegam a segunda peça. Removem exclusivamente essa segunda peça, puxando-a suavemente para fora da cena. As demais peças permanecem rigorosamente imóveis em suas posições originais.\n\nRepetir exatamente o mesmo padrão até retirar todas as peças: selecionar uma única peça, segurá-la, puxá-la para fora do quadro, deixá-la desaparecer completamente, retornar as mãos e somente então iniciar a próxima remoção.",
+        howTo: ""
+      },
+      {
+        id: "POV-26",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "FINGIR QUEIMAR A ROUPA COM O ISQUEIRO",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-31/1788177158188-video4945367576751375855.mp4",
+        prompt: "Vídeo POV aproxima o isqueiro extremamente perto da roupa, acende, mas antes de queimar faz um sinal de não com o dedo para a câmera, larga o isqueiro e rasga o pacote tirando exatamente a roupa da segunda imagem anexada, e mostrando sem desdobrar. Tudo de forma ultra rápida e dinâmica.",
+        howTo: "USE A IMAGEM JÁ PRONTA NO AMBIENTE + ROUPA PARTE DA FRENTE + ROUPA PARTE DE TRÁS"
+      },
+      {
+        id: "POV-27",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "TAPAS ENÉRGICOS NO PACOTE PRETO ATÉ RASGAR",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786668744875-ba13hw-b24a708d-3eef-4d11-b840-b5d1dfc957b9.mp4",
+        prompt: "Continue suavemente a partir do quadro atual.\n\nAção Única e Rápida (Duração total < 6 segundo):\nA influenciadora realiza movimentos rápido, fluido e enérgico sem nenhuma hesitação. A mão direita sai da encomenda, levanta cerca de 15 a 20 cm em um arco rápido e natural e, imediatamente, desce com força aplicando um tapa de palma aberta (slap) bem no centro do pacote preto, ela ta 3 tapas de palma aberta e um com a mão fexa fazendo com que a embalgem rasgue de forma natural.\n\nIntenção do Movimento: O gesto deve parecer espontâneo, confiante e expressivo (estilo \"olha isso\"). Não deve haver pausa ou antecipação lenta antes do impacto.\n\nFísica de Impacto e Pós-Impacto:\nNo momento do impacto, o pacote sofre uma leve compressão física realista.\nOs dedos e o pulso absorvem o contato com anatomia e acompanhamento naturais.\nApós o tapa, a palma da mão permanece firmemente pressionada sobre o pacote por um breve momento.",
+        howTo: "USE A IMAGEM PRONTA COM O PACOTE"
+      },
+      {
+        id: "POV-28",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "FINGINDO CORTAR A CAMISA COM TESOURA NO AR",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-03/1788406732845-Video_vertical_ultra_rea.mp4",
+        prompt: "Vídeo vertical 9:16, ultra-realista, estilo UGC de smartphone, com uma única cena contínua de 10 segundos.\nA mão aproxima rapidamente a tesoura da camisa e faz um único movimento de corte no ar, acima do tecido, com as lâminas abrindo e fechando sem tocar, prender, cortar ou danificar a camisa. A tesoura permanece alguns centímetros acima da blusa, deixando claramente visível que está apenas simulando o corte por cima.\nImediatamente depois, a mão faz uma única vez um gesto rápido de “não” com o dedo indicador, balançando-o de um lado para o outro. Não repetir o gesto e não repetir a ação da tesoura.\nsegundos finais, aproximando levemente a câmera para destacar a textura, o tecido, as costuras e os detalhes da camisa.\nMovimentos rápidos, naturais e espontâneos. Sem fala, sem narração, sem cortes de câmera, sem repetição, sem câmera lenta. A camisa permanece intacta durante toda a cena.",
+        howTo: "USE A IMAGEM JÁ PRONTA"
+      },
+      {
+        id: "POV-29",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "COLOCANDO UM ITEM DE CADA VEZ SOBRE A CAMA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-03/1788409113442-Video_POV_maos_femininas_colo.mp4",
+        prompt: "Video POV, mãos femininas colocam um item de cada vez sobre a cama e por último a peça de roupa, e passa a mão sobre a roupa. APARECER APENAS AS MÃOS QUE ESTA NA IMAGEM COLOCANDO AS PEÇAS SOBRE A SUPERFÍCIA, NÃO APARECER ROSTO, CABEÇA DA MODELO OU MODELO",
+        howTo: "USE AS IMAGENS GERADAS EM \"POV COM ACESSÓRIOS\". ANEXE PRIMEIRO A IMAGEM COM A SUPERFICIE VAZIA + IMAGEM COM A SUPERFICIE COM ACESSÓRIOS E A ROUPA"
+      },
+      {
+        id: "POV-30",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "TINTA VERMELHA NA ROUPA, ESTRALO DO DEDO E CORTE",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-16/1789567239189-Woman_spilling_red_paint_on_202609081615.mp4",
+        prompt: "Vídeo POV, mãos femininas com joias e unhas feitas, vira um pote de tinta (VERMELHO) manchando a roupa, estrala os dedos e rapidamente um corte seco para a segunda imagem, onde a câmera dinamicamente aproxima da roupa, a mão vai passando de cima embaixo e a câmera acompanhando, sem deformar a roupa.",
+        howTo: "GERE DUAS IMAGENS DO PRODUTO, UMA DE CADA COR. JOGUE AS DUAS IMAGENS ONDE VOCÊ GERA O VÍDEO"
+      },
+      {
+        id: "POV-31",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "COLOCANDO ITEM POR ITEM E TAMPANDO A LENTE COM A PALMA",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-03/1788409568535-Video_POV_maos_femininas_colo-1-.mp4",
+        prompt: "Vídeo POV, mãos femininas colocam um item de cada vez sobre a cama e por último a peça de roupa, finaliza tampando a lente da câmera com a palma da mão. APARECER APENAS AS MÃOS QUE ESTA NA IMAGEM COLOCANDO AS PEÇAS SOBRE A SUPERFÍCIA, NÃO APARECER ROSTO, CABEÇA DA MODELO OU MODELO",
+        howTo: "USE AS IMAGENS GERADAS EM \"POV COM ACESSÓRIOS\""
+      },
+      {
+        id: "POV-32",
+        category: "pov-roupas",
+        categoryName: "🎬 POV ROUPAS",
+        title: "COMERCIAL ASMR BOUTIQUE MÃOS FEMININAS EM MÁRMORE (10S)",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-09-21/1790017693456-Commercial_video_product_ASMR_cr-_20260921160753.mp4",
+        prompt: "Crie um comercial premium de produto com duração total de 10 segundos, estética ASMR ultrafotorrealista, formato horizontal 16:9 ou vertical 9:16.\n\nUse EXATAMENTE o produto da imagem um de referência como fonte visual absoluta.\n\nO produto deve permanecer idêntico em todos os planos, preservando integralmente formato, proporções, cores, materiais, texturas, construção, logos, ferragens e acabamentos.\n\nPOV E AMBIENTE: O vídeo deve permanecer exclusivamente em POV de primeira pessoa. Apenas duas mãos femininas e delicadas interagem com o produto sobre uma mesa de mármore branca.\n\n0.0–1.0s Captura em queda controlada;\n1.0–2.0s Sentir o material macro 100mm;\n2.0–3.0s Resposta física de flexibilidade/compressão;\n3.0–4.0s Macro de textura e acabamentos;\n4.0–5.0s Interação funcional;\n5.0–5.8s Microdetalhes da costura;\n5.8–6.7s Tracking do design;\n6.7–7.6s Rotação com speed ramp.",
+        howTo: "USE A IMAGEM DO PRODUTO + PROMPT. ALTERE FUNDO E MÃOS COMO QUISER"
+      }
+    ];
+
+    // Coleção completa dos 119 vídeos anteriores
+    const baseVideos = [
+      // 1. CASAL (6)
       {
         id: 1,
         category: "casal",
@@ -252,9 +538,7 @@
         howTo: ""
       },
 
-      // ==========================================
-      // 2. 🎬 FACELESS (19 Vídeos)
-      // ==========================================
+      // 2. FACELESS (19)
       {
         id: 7,
         category: "faceless",
@@ -427,9 +711,7 @@
         howTo: "USE A IMAGEM PRONTA DA MODELO, ACRESCENTE NO FINAL DO PROMPT O \"FOCO NA PEÇA\" (EX: \"FOCO NA BLUSA\")"
       },
 
-      // ==========================================
-      // 3. CHINÊS: QUALQUER PRODUTO (7 Vídeos)
-      // ==========================================
+      // 3. CHINÊS QUALQUER PRODUTO (7)
       {
         id: 26,
         category: "chines",
@@ -494,9 +776,7 @@
         howTo: "USE APENAS O PRINT DO PRODUTO"
       },
 
-      // ==========================================
-      // 4. 🎬 POV CALÇADOS (4 Vídeos)
-      // ==========================================
+      // 4. POV CALÇADOS (4)
       {
         id: 33,
         category: "calcados",
@@ -534,16 +814,14 @@
         howTo: "USE O PRINT DO PRODUTO"
       },
 
-      // ==========================================
-      // 5. 🎬 PAI / MÃE (15 Vídeos)
-      // ==========================================
+      // 5. PAI / MÃE (15)
       {
         id: 37,
         category: "pai-mae",
         categoryName: "🎬 PAI / MÃE",
         title: "CAMINHANDO ATÉ A CÂMERA (PAI E FILHA)",
         url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/2026-08-30/1788124826929-Man_and_woman_walking_202607311323.mp4",
-        prompt: "Anime o quadro fornecido. Preserve a identidade, o produto, o ambiente, a iluminação e a composição exatamente como exibidos, com movimento natural e continuidade.\nEnquadramento de corpo inteiro de frente, câmera totalmente estática em tripé fixo, sem zoom, sem cortes. Formato vertical 9:16.\nAção: o homem dá alguns passos relaxados em direção à câmera, com a filha permanecendo próxima a ele e mantendo o braço em volta de sua cintura. A camiseta dele move-se naturalmente com o caimento real do algodão.\nSem fala, sem legendas, ruído suave ambiente de cozinha residencial.",
+        prompt: "Anime o quadro fornecido. Preserve a identidade, o produto, o ambiente, a iluminação e a composição exatamente como exibidos, com movimento natural e continuidade.\nEnquadramento de corpo inteiro de frente, câmera totalmente estática em tripé fixo, sem zoom, sem cortes. Formato vertical 9:16.\nAção: o homem dá alguns passos relaxados em direção à câmera, com a filha permanecendo próxima a ele e mantendo o braço em volta de sua cintura. A camiseta dele move-se naturalmente com a passada dele, o tecido deslizando suavemente sobre os ombros e o peito, exibindo caimento e peso realistas.\nSem fala, sem legendas, ruído suave ambiente de cozinha residencial.",
         howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
       },
       {
@@ -673,9 +951,7 @@
         howTo: "IMAGEM JÁ PRONTA + PROMPT (ADAPTE SE FOR NECESSÁRIO)"
       },
 
-      // ==========================================
-      // 6. 🎬 CAPINHAS CELULAR (6 Vídeos)
-      // ==========================================
+      // 6. CAPINHAS CELULAR (6)
       {
         id: 52,
         category: "capinhas",
@@ -731,15 +1007,13 @@
         howTo: ""
       },
 
-      // ==========================================
-      // 7. 🎬 FEMININOS (56 Vídeos)
-      // ==========================================
+      // 7. FEMININOS (56)
       {
         id: 58,
         category: "femininos",
         categoryName: "🎬 FEMININOS",
         title: "GANCHO/REFORÇO: AJUSTE DA ALÇA DA BLUSA COM SORRISO",
-        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786964990525-49v857-video5109359839113381320.mp4",
+        url: "https://prompt-supabase-87ca16-162-35-122-45.sslip.io/storage/v1/object/public/prompt-media/legacy/1786964990525-49v857-video5109359839113381310.mp4",
         prompt: "Vídeo de 5 segundos.\nA personagem puxa delicadamente uma das mãos até a alça da blusa e a puxa suavemente para cima, ajustando-a de forma natural. Em seguida, mantém contato visual com a câmera enquanto faz uma leve expressão de aprovação, abrindo discretamente o sorriso. Finaliza mantendo um sorriso simpático e um leve balanço corporal contínuo.",
         howTo: ""
       },
@@ -1239,9 +1513,7 @@
         howTo: "MODELO + PEÇA + PACOTE."
       },
 
-      // ==========================================
-      // 8. 🎬 MASCULINOS (6 Vídeos)
-      // ==========================================
+      // 8. MASCULINOS (6)
       {
         id: 114,
         category: "masculinos",
@@ -1298,7 +1570,10 @@
       }
     ];
 
-    // Gerenciador de Estado
+    // Unir os 32 vídeos de POV Roupas com os 119 vídeos existentes = 151 no total
+    const allVideos = [...povRoupas, ...baseVideos];
+
+    // Estado da aplicação
     let currentCategory = 'all';
     let searchQuery = '';
     let isDenseGrid = false;
@@ -1311,7 +1586,7 @@
     const gridToggleBtn = document.getElementById('grid-toggle-btn');
     const gridToggleText = document.getElementById('grid-toggle-text');
 
-    // Notificação Toast Verde
+    // Notificação Toast
     function triggerToast(text, icon = 'check') {
       const toast = document.getElementById('toast');
       const toastMessage = document.getElementById('toast-message');
@@ -1331,7 +1606,7 @@
       }, 2400);
     }
 
-    // Copiar Texto com Fallback Seguro
+    // Copiar Texto com Fallback
     function copyText(str, msg) {
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(str)
@@ -1368,7 +1643,7 @@
         .replace(/'/g, "&#039;");
     }
 
-    // Pausar vídeos que saem da tela com IntersectionObserver
+    // IntersectionObserver para pausar vídeos automaticamente
     let observer;
     function initVideoObserver() {
       if (observer) observer.disconnect();
@@ -1385,7 +1660,7 @@
       document.querySelectorAll('video').forEach(vid => observer.observe(vid));
     }
 
-    // Renderização Principal dos Vídeos
+    // Renderizar Cards de Vídeo
     function renderVideos() {
       const filtered = allVideos.filter(item => {
         const q = searchQuery.toLowerCase();
@@ -1393,7 +1668,7 @@
           item.title.toLowerCase().includes(q) || 
           item.prompt.toLowerCase().includes(q) || 
           item.categoryName.toLowerCase().includes(q) ||
-          (`#${item.id}`).includes(q) || 
+          (`${item.id}`).toLowerCase().includes(q) || 
           (item.howTo && item.howTo.toLowerCase().includes(q));
 
         const matchesCategory = (currentCategory === 'all') || (item.category === currentCategory);
@@ -1412,13 +1687,13 @@
 
       filtered.forEach((item) => {
         const card = document.createElement('article');
-        card.className = "bg-brand-card/95 border border-brand-cardBorder hover:border-brand-hoverBorder rounded-3xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 hover:translate-y-[-2px] group";
+        card.className = "bg-brand-card border border-brand-cardBorder hover:border-brand-hoverBorder rounded-3xl overflow-hidden shadow-xl flex flex-col transition-all duration-300 hover:translate-y-[-2px] group";
 
         const hasHowTo = item.howTo && item.howTo.trim().length > 0;
 
         card.innerHTML = `
           <!-- Header do Card -->
-          <div class="px-4 py-3 border-b border-brand-cardBorder/70 flex items-center justify-between gap-2 bg-[#0C1017]/90">
+          <div class="px-4 py-3 border-b border-brand-cardBorder/70 flex items-center justify-between gap-2 bg-[#0A0E17]">
             <div class="flex items-center gap-2 min-w-0">
               <span class="w-2 h-2 rounded-full bg-emeraldNeon shrink-0 animate-pulse"></span>
               <span class="text-[10px] font-bold uppercase tracking-wider text-emeraldLight px-2 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 truncate">
@@ -1435,7 +1710,7 @@
             ${escapeHtml(item.title)}
           </div>
 
-          <!-- Video Player 9:16 -->
+          <!-- Player de Vídeo 9:16 -->
           <div class="relative aspect-[9/16] bg-black/95 w-full overflow-hidden flex items-center justify-center">
             <video 
               id="vid-${item.id}"
@@ -1447,7 +1722,7 @@
               preload="metadata"
             ></video>
 
-            <!-- Botão Flutuante de Link Direto -->
+            <!-- Botão de Copiar Link Direto -->
             <button 
               onclick="copyText('${item.url}', 'Link .mp4 copiado!')"
               title="Copiar link direto do vídeo" 
@@ -1457,8 +1732,8 @@
             </button>
           </div>
 
-          <!-- Área de Prompt & Conteúdo -->
-          <div class="p-4 flex-1 flex flex-col justify-between gap-3.5 bg-brand-card">
+          <!-- Prompt & Controles -->
+          <div class="p-4 flex-1 flex flex-col justify-between gap-3 bg-brand-card">
             
             <div class="space-y-2.5">
               <div class="flex items-center justify-between">
@@ -1469,10 +1744,10 @@
                 <span class="text-[10px] text-slate-400 font-mono">9:16 HD</span>
               </div>
 
-              <!-- Caixa de Texto do Prompt com Scroll -->
-              <pre class="custom-scroll p-3 rounded-2xl bg-[#090C12] border border-brand-cardBorder/90 text-[11px] leading-relaxed font-mono text-slate-300 h-36 overflow-y-auto whitespace-pre-wrap select-all focus:outline-none focus:border-emeraldNeon/40 transition-colors">${escapeHtml(item.prompt)}</pre>
+              <!-- Textarea de Prompt com Scroll -->
+              <pre class="custom-scroll p-3 rounded-2xl bg-[#070A10] border border-brand-cardBorder/90 text-[11px] leading-relaxed font-mono text-slate-300 h-36 overflow-y-auto whitespace-pre-wrap select-all focus:outline-none focus:border-emeraldNeon/40 transition-colors">${escapeHtml(item.prompt)}</pre>
 
-              <!-- Caixa 'Como Usar' (quando existir) -->
+              <!-- Caixa de Instruções de Uso -->
               ${hasHowTo ? `
                 <div class="p-2.5 rounded-xl border border-emeraldNeon/25 bg-emeraldNeon/5">
                   <span class="text-[9px] font-extrabold uppercase tracking-widest text-emeraldLight block mb-1 flex items-center gap-1">
@@ -1486,7 +1761,7 @@
             <!-- Botões de Ação -->
             <div class="grid grid-cols-2 gap-2 pt-1 border-t border-brand-cardBorder/50">
               <button 
-                onclick="copyPromptBtn(this, ${item.id})"
+                onclick="copyPromptBtn(this, '${item.id}')"
                 class="inline-flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-gradient-to-r from-emerald-500 via-emeraldNeon to-teal-400 hover:brightness-110 active:scale-[0.98] text-black font-extrabold text-[11px] uppercase tracking-wider shadow-md transition-all duration-200"
               >
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
@@ -1512,9 +1787,9 @@
       initVideoObserver();
     }
 
-    // Feedback visual ao copiar prompt
+    // Copiar Prompt com feedback
     function copyPromptBtn(btn, id) {
-      const item = allVideos.find(v => v.id === id);
+      const item = allVideos.find(v => String(v.id) === String(id));
       if (!item) return;
 
       copyText(item.prompt, `Prompt #${id} copiado com sucesso!`);
@@ -1540,7 +1815,7 @@
       renderVideos();
     });
 
-    // Eventos de Filtro por Categoria
+    // Eventos dos Filtros de Categoria
     topicButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         topicButtons.forEach(b => {
@@ -1556,7 +1831,7 @@
       });
     });
 
-    // Alternador de Densidade de Grade
+    // Alternar Grade
     gridToggleBtn.addEventListener('click', () => {
       isDenseGrid = !isDenseGrid;
       if (isDenseGrid) {
@@ -1568,7 +1843,7 @@
       }
     });
 
-    // Hover para Preview Rápido
+    // Hover para pré-visualização de vídeo
     document.addEventListener('mouseover', (e) => {
       if (e.target.tagName === 'VIDEO') {
         const playPromise = e.target.play();
