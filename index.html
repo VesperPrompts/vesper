@@ -133,7 +133,7 @@
           <span>Sair</span>
         </button>
 
-        <!-- Botão Adicionar Prompt (apenas para usuários autenticados) -->
+        <!-- Botão Adicionar Prompt (apenas autenticado) -->
         <button 
           id="btn-open-create-modal"
           class="hidden px-4 py-2 bg-gradient-to-r from-emerald-500 via-emeraldNeon to-teal-400 text-black font-extrabold text-xs rounded-xl shadow-lg shadow-emerald-500/20 hover:brightness-110 active:scale-95 transition-all flex items-center gap-1.5 shrink-0"
@@ -399,8 +399,7 @@
 
     const LOCAL_CUSTOM_KEY = 'vesper_user_created_videos_v4';
 
-    // 151 Mídias Nativas Iniciais
-    const EMBEDDED_VIDEOS = [
+    // (AQUI FICAM OS SEUS 151 VÍDEOS QUE JÁ TINHA: const EMBEDDED_VIDEOS = [...]; )
       {
         id: 1,
         category: "pov-roupas",
@@ -1777,7 +1776,7 @@
       }
     ];
     
-    let cloudVideos = [];
+   let cloudVideos = [];
     let customVideos = [];
     let allVideos = [];
     let currentCategory = 'all';
