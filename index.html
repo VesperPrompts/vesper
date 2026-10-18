@@ -359,9 +359,9 @@
       <div class="flex items-center gap-2">
         <span class="font-display font-extrabold text-emeraldLight">VESPER PROMPTS</span>
         <span class="text-slate-600">•</span>
-        <span>Coleção Completa de Mídias & Prompts</span>
+        <span>Mídias & Prompts</span>
       </div>
-      <p class="text-slate-500 text-[11px]">Sincronização em tempo real na nuvem.</p>
+      <p class="text-slate-500 text-[11px]">Todos os direitos reservados à Vesper Prompts © </p>
     </div>
   </footer>
 
@@ -573,7 +573,7 @@
     });
 
     /* ========================================================================
-       SINCRONIZAÇÃO EM TEMPO REAL (REALTIME) COM O SUPABASE
+       GESTÃO DOS PROMPTS NA NUVEM & EXCLUSÃO
        ======================================================================== */
     async function loadCloudPrompts() {
       try {
@@ -600,6 +600,45 @@
       }
     }
 
+    // Função de Excluir Card Completo
+    async function deletePromptCard(id, url, isCloud) {
+      if (!confirm('Tem a certeza que deseja excluir este prompt e a sua mídia permanentemente?')) {
+        return;
+      }
+
+      if (isCloud) {
+        try {
+          // 1. Remove arquivo do Storage se pertencer ao bucket media
+          if (url && url.includes(`/storage/v1/object/public/${SUPABASE_STORAGE_BUCKET}/`)) {
+            const fileName = url.split(`/storage/v1/object/public/${SUPABASE_STORAGE_BUCKET}/`).pop();
+            if (fileName) {
+              await supabaseClient.storage.from(SUPABASE_STORAGE_BUCKET).remove([fileName]);
+            }
+          }
+
+          // 2. Remove registro na tabela
+          const { error } = await supabaseClient.from('prompts').delete().eq('id', id);
+          if (error) throw error;
+
+          cloudVideos = cloudVideos.filter(v => String(v.id) !== String(id));
+          triggerToast('Card excluído com sucesso!');
+        } catch (err) {
+          console.error(err);
+          triggerToast('Erro ao excluir: ' + (err.message || 'Verifique o console'), 'alert-circle');
+          return;
+        }
+      } else {
+        // Exclusão de itens locais
+        customVideos = customVideos.filter(v => String(v.id) !== String(id));
+        localStorage.setItem(LOCAL_CUSTOM_KEY, JSON.stringify(customVideos));
+        triggerToast('Card local removido com sucesso!');
+      }
+
+      refreshVideoList();
+      renderTopicsBar();
+      renderVideos();
+    }
+
     function initRealtimeSubscription() {
       supabaseClient
         .channel('public:prompts')
@@ -617,12 +656,19 @@
             isCloud: true
           };
 
-          // Adiciona ao topo e atualiza a interface imediatamente
+          cloudVideos = cloudVideos.filter(v => String(v.id) !== String(item.id));
           cloudVideos.unshift(newItem);
           refreshVideoList();
           renderTopicsBar();
           renderVideos();
           triggerToast('Novo prompt sincronizado em tempo real!', 'sparkles');
+        })
+        .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'prompts' }, (payload) => {
+          const deletedId = payload.old.id;
+          cloudVideos = cloudVideos.filter(v => String(v.id) !== String(deletedId));
+          refreshVideoList();
+          renderTopicsBar();
+          renderVideos();
         })
         .subscribe();
     }
@@ -731,6 +777,7 @@
 
         const hasHowTo = item.howTo && item.howTo.trim().length > 0;
         const isImage = isImageMedia(item);
+        const canDelete = Boolean(item.isCloud || item.isLocalFile);
 
         card.innerHTML = `
           <!-- Header do Card -->
@@ -744,9 +791,20 @@
               ${isImage ? `<span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-teal-500/10 text-teal-300 border border-teal-500/20">Foto</span>` : ''}
             </div>
 
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-white/5 text-slate-400 font-bold border border-white/5 shrink-0 truncate max-w-[90px]">
-              #${String(item.id).substring(0, 6)}
-            </span>
+            <div class="flex items-center gap-1.5 shrink-0">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-white/5 text-slate-400 font-bold border border-white/5 truncate max-w-[80px]">
+                #${String(item.id).substring(0, 6)}
+              </span>
+              ${canDelete ? `
+                <button 
+                  onclick="deletePromptCard('${item.id}', '${escapeHtml(item.url)}',${Boolean(item.isCloud)})"
+                  title="Excluir este card"
+                  class="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/25 text-red-400 hover:text-red-300 border border-red-500/20 transition-all"
+                >
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                </button>
+              ` : ''}
+            </div>
           </div>
 
           <!-- Faixa Dourada com Título -->
