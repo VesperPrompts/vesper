@@ -206,7 +206,7 @@
     </div>
   </header>
 
-  <!-- Modal de Adicionar Prompt / Mídia -->
+  <!-- Modal de Adicionar / Editar Prompt & Mídia -->
   <div id="video-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-200">
     <div class="bg-brand-surface border border-brand-cardBorder rounded-3xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
       
@@ -214,11 +214,11 @@
       <div class="px-6 py-4 border-b border-brand-cardBorder flex items-center justify-between bg-[#0B0F17]">
         <div class="flex items-center gap-2.5">
           <div class="w-8 h-8 rounded-xl bg-emeraldNeon/20 text-emeraldLight flex items-center justify-center">
-            <i data-lucide="folder-up" class="w-4 h-4"></i>
+            <i id="modal-icon" data-lucide="folder-up" class="w-4 h-4"></i>
           </div>
           <div>
-            <h3 class="font-display text-sm font-bold text-slate-100">Adicionar Nova Mídia & Prompt</h3>
-            <p class="text-[11px] text-slate-400">O ficheiro será guardado na nuvem e ficará disponível para todos</p>
+            <h3 id="modal-heading-title" class="font-display text-sm font-bold text-slate-100">Adicionar Nova Mídia & Prompt</h3>
+            <p id="modal-heading-subtitle" class="text-[11px] text-slate-400">O ficheiro será guardado na nuvem e ficará disponível para todos</p>
           </div>
         </div>
         <button id="modal-close-btn" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-all">
@@ -228,6 +228,12 @@
 
       <!-- Formulário com Scroll -->
       <form id="video-form" class="p-6 overflow-y-auto custom-scroll space-y-4 text-xs font-medium">
+
+        <!-- Campo Oculto para ID em edição -->
+        <input type="hidden" id="form-edit-id" value="" />
+        <input type="hidden" id="form-edit-is-cloud" value="" />
+        <input type="hidden" id="form-existing-url" value="" />
+        <input type="hidden" id="form-existing-media-type" value="" />
 
         <!-- Título -->
         <div>
@@ -269,6 +275,10 @@
             <i data-lucide="image" class="w-3.5 h-3.5 text-gold"></i>
             Mídia 9:16 (Upload na Nuvem ou Link Direto)
           </span>
+
+          <p id="media-edit-note" class="hidden text-[10px] text-amber-400 font-semibold">
+            Nota: Ao editar, se não selecionar um novo arquivo ou link, a mídia atual será mantida!
+          </p>
 
           <div>
             <label class="block text-slate-400 text-[10px] mb-1">Opção A: Upload de Vídeo ou Fotografia para a Nuvem</label>
@@ -361,7 +371,7 @@
         <span class="text-slate-600">•</span>
         <span>Mídias & Prompts</span>
       </div>
-      <p class="text-slate-500 text-[11px]">Todos os direitos reservados à Vesper Prompts © </p>
+      <p class="text-slate-500 text-[11px]">Todos os direitos reservados à Vesper Prompts ©</p>
     </div>
   </footer>
 
@@ -423,11 +433,21 @@
     const btnGateSubmit = document.getElementById('btn-gate-submit');
     const btnGateText = document.getElementById('btn-gate-text');
 
-    // Modal de Criação de Prompt
+    // Modal de Criação / Edição de Prompt
     const videoModal = document.getElementById('video-modal');
     const modalCloseBtn = document.getElementById('modal-close-btn');
     const modalCancelBtn = document.getElementById('modal-cancel-btn');
+    const modalIcon = document.getElementById('modal-icon');
+    const modalHeadingTitle = document.getElementById('modal-heading-title');
+    const modalHeadingSubtitle = document.getElementById('modal-heading-subtitle');
+    const mediaEditNote = document.getElementById('media-edit-note');
+
     const videoForm = document.getElementById('video-form');
+    const formEditId = document.getElementById('form-edit-id');
+    const formEditIsCloud = document.getElementById('form-edit-is-cloud');
+    const formExistingUrl = document.getElementById('form-existing-url');
+    const formExistingMediaType = document.getElementById('form-existing-media-type');
+
     const formTitle = document.getElementById('form-title');
     const formCategorySelect = document.getElementById('form-category-select');
     const formCategoryCustom = document.getElementById('form-category-custom');
@@ -573,7 +593,7 @@
     });
 
     /* ========================================================================
-       GESTÃO DOS PROMPTS NA NUVEM & EXCLUSÃO
+       GESTÃO DOS PROMPTS NA NUVEM, EDIÇÃO & EXCLUSÃO
        ======================================================================== */
     async function loadCloudPrompts() {
       try {
@@ -608,7 +628,6 @@
 
       if (isCloud) {
         try {
-          // 1. Remove arquivo do Storage se pertencer ao bucket media
           if (url && url.includes(`/storage/v1/object/public/${SUPABASE_STORAGE_BUCKET}/`)) {
             const fileName = url.split(`/storage/v1/object/public/${SUPABASE_STORAGE_BUCKET}/`).pop();
             if (fileName) {
@@ -616,7 +635,6 @@
             }
           }
 
-          // 2. Remove registro na tabela
           const { error } = await supabaseClient.from('prompts').delete().eq('id', id);
           if (error) throw error;
 
@@ -628,7 +646,6 @@
           return;
         }
       } else {
-        // Exclusão de itens locais
         customVideos = customVideos.filter(v => String(v.id) !== String(id));
         localStorage.setItem(LOCAL_CUSTOM_KEY, JSON.stringify(customVideos));
         triggerToast('Card local removido com sucesso!');
@@ -637,6 +654,37 @@
       refreshVideoList();
       renderTopicsBar();
       renderVideos();
+    }
+
+    // Função para Abrir o Modal em Modo de Edição
+    function editPromptCard(id, isCloud) {
+      const item = allVideos.find(v => String(v.id) === String(id));
+      if (!item) return;
+
+      formEditId.value = item.id;
+      formEditIsCloud.value = isCloud ? 'true' : 'false';
+      formExistingUrl.value = item.url || '';
+      formExistingMediaType.value = item.mediaType || 'video';
+
+      formTitle.value = item.title || '';
+      formCategoryCustom.value = '';
+      formCategorySelect.value = item.category || 'all';
+
+      formVideoUrl.value = '';
+      formVideoFile.value = '';
+
+      formPrompt.value = item.prompt || '';
+      formHowto.value = item.howTo || '';
+
+      modalHeadingTitle.textContent = 'Editar Mídia & Prompt';
+      modalHeadingSubtitle.textContent = 'Altere o texto ou envie um novo arquivo para substituir a mídia atual.';
+      btnSubmitText.textContent = 'Salvar Alterações';
+      mediaEditNote.classList.remove('hidden');
+
+      modalIcon.setAttribute('data-lucide', 'pencil');
+      lucide.createIcons({ root: modalIcon.parentElement });
+
+      openModal(videoModal);
     }
 
     function initRealtimeSubscription() {
@@ -662,6 +710,27 @@
           renderTopicsBar();
           renderVideos();
           triggerToast('Novo prompt sincronizado em tempo real!', 'sparkles');
+        })
+        .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'prompts' }, (payload) => {
+          const item = payload.new;
+          const updatedIndex = cloudVideos.findIndex(v => String(v.id) === String(item.id));
+          if (updatedIndex !== -1) {
+            cloudVideos[updatedIndex] = {
+              id: item.id,
+              title: item.title,
+              category: item.category,
+              categoryName: item.category_name,
+              url: item.url,
+              mediaType: item.media_type,
+              prompt: item.prompt,
+              howTo: item.how_to,
+              isCloud: true
+            };
+            refreshVideoList();
+            renderTopicsBar();
+            renderVideos();
+            triggerToast('Prompt atualizado com sucesso!', 'sparkles');
+          }
         })
         .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'prompts' }, (payload) => {
           const deletedId = payload.old.id;
@@ -777,7 +846,7 @@
 
         const hasHowTo = item.howTo && item.howTo.trim().length > 0;
         const isImage = isImageMedia(item);
-        const canDelete = Boolean(item.isCloud || item.isLocalFile);
+        const canManage = Boolean(item.isCloud || item.isLocalFile);
 
         card.innerHTML = `
           <!-- Header do Card -->
@@ -795,7 +864,14 @@
               <span class="text-[11px] font-mono px-2 py-0.5 rounded-md bg-white/5 text-slate-400 font-bold border border-white/5 truncate max-w-[80px]">
                 #${String(item.id).substring(0, 6)}
               </span>
-              ${canDelete ? `
+              ${canManage ? `
+                <button 
+                  onclick="editPromptCard('${item.id}',${Boolean(item.isCloud)})"
+                  title="Editar este prompt / mídia"
+                  class="p-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/25 text-emeraldLight border border-emerald-500/20 transition-all"
+                >
+                  <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
+                </button>
                 <button 
                   onclick="deletePromptCard('${item.id}', '${escapeHtml(item.url)}',${Boolean(item.isCloud)})"
                   title="Excluir este card"
@@ -912,7 +988,7 @@
     }
 
     /* ========================================================================
-       MODAIS & FORMULÁRIO DE ADIÇÃO
+       MODAIS & FORMULÁRIO DE ADIÇÃO / EDIÇÃO
        ======================================================================== */
     function openModal(modal) {
       modal.classList.remove('hidden');
@@ -925,12 +1001,26 @@
     }
 
     btnOpenCreate.addEventListener('click', () => {
+      formEditId.value = '';
+      formEditIsCloud.value = '';
+      formExistingUrl.value = '';
+      formExistingMediaType.value = '';
+
       formTitle.value = '';
       formCategoryCustom.value = '';
       formVideoUrl.value = '';
       formVideoFile.value = '';
       formPrompt.value = '';
       formHowto.value = '';
+
+      modalHeadingTitle.textContent = 'Adicionar Nova Mídia & Prompt';
+      modalHeadingSubtitle.textContent = 'O ficheiro será guardado na nuvem e ficará disponível para todos';
+      btnSubmitText.textContent = 'Salvar e Publicar';
+      mediaEditNote.classList.add('hidden');
+
+      modalIcon.setAttribute('data-lucide', 'folder-up');
+      lucide.createIcons({ root: modalIcon.parentElement });
+
       openModal(videoModal);
     });
 
@@ -940,29 +1030,36 @@
     videoForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
+      const editId = formEditId.value;
+      const isEditing = Boolean(editId);
+      const isCloudEdit = formEditIsCloud.value === 'true';
+
       const title = formTitle.value.trim();
       const prompt = formPrompt.value.trim();
       const howTo = formHowto.value.trim();
       let videoUrl = formVideoUrl.value.trim();
       const uploadedFile = formVideoFile.files[0];
 
-      if (!videoUrl && !uploadedFile) {
+      if (!isEditing && !videoUrl && !uploadedFile) {
         triggerToast('Forneça uma URL ou selecione um arquivo!', 'alert-triangle');
         return;
       }
 
       btnSubmitForm.disabled = true;
-      btnSubmitText.textContent = 'Enviando mídia...';
+      btnSubmitText.textContent = isEditing ? 'Atualizando...' : 'Enviando mídia...';
 
       try {
-        let mediaType = 'video';
+        let mediaType = formExistingMediaType.value || 'video';
+        let finalUrl = isEditing ? formExistingUrl.value : '';
+
         if (uploadedFile) {
           mediaType = uploadedFile.type.startsWith('image/') ? 'image' : 'video';
         } else if (videoUrl) {
           mediaType = /\.(jpeg|jpg|png|webp|gif|svg|avif)($|\?)/i.test(videoUrl) ? 'image' : 'video';
+          finalUrl = videoUrl;
         }
 
-        // 1. Upload para o Supabase Storage Bucket
+        // Upload novo arquivo no Storage se selecionado
         if (uploadedFile) {
           const fileExt = uploadedFile.name.split('.').pop();
           const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
@@ -978,7 +1075,7 @@
             .from(SUPABASE_STORAGE_BUCKET)
             .getPublicUrl(filePath);
 
-          videoUrl = publicUrlData.publicUrl;
+          finalUrl = publicUrlData.publicUrl;
         }
 
         let categoryName = '';
@@ -993,23 +1090,62 @@
           categoryName = selectedOpt ? selectedOpt.textContent.replace(/\s\(\d+\)$/, '').trim() : 'DIVERSOS';
         }
 
-        // 2. Salvar na Tabela do Supabase
-        const { error: dbError } = await supabaseClient
-          .from('prompts')
-          .insert([{
-            title: title,
-            category: category,
-            category_name: categoryName,
-            url: videoUrl,
-            media_type: mediaType,
-            prompt: prompt,
-            how_to: howTo
-          }]);
+        if (isEditing) {
+          if (isCloudEdit) {
+            const { error: updateError } = await supabaseClient
+              .from('prompts')
+              .update({
+                title: title,
+                category: category,
+                category_name: categoryName,
+                url: finalUrl,
+                media_type: mediaType,
+                prompt: prompt,
+                how_to: howTo
+              })
+              .eq('id', editId);
 
-        if (dbError) throw dbError;
+            if (updateError) throw updateError;
+          } else {
+            const localIdx = customVideos.findIndex(v => String(v.id) === String(editId));
+            if (localIdx !== -1) {
+              customVideos[localIdx] = {
+                ...customVideos[localIdx],
+                title,
+                category,
+                categoryName,
+                url: finalUrl,
+                mediaType,
+                prompt,
+                howTo
+              };
+              localStorage.setItem(LOCAL_CUSTOM_KEY, JSON.stringify(customVideos));
+            }
+          }
+          triggerToast('Card atualizado com sucesso!');
+        } else {
+          // Criação nova
+          const { error: dbError } = await supabaseClient
+            .from('prompts')
+            .insert([{
+              title: title,
+              category: category,
+              category_name: categoryName,
+              url: finalUrl,
+              media_type: mediaType,
+              prompt: prompt,
+              how_to: howTo
+            }]);
 
+          if (dbError) throw dbError;
+          triggerToast('Mídia e prompt publicados com sucesso!');
+        }
+
+        await loadCloudPrompts();
+        refreshVideoList();
+        renderTopicsBar();
+        renderVideos();
         closeModal(videoModal);
-        triggerToast('Mídia e prompt publicados com sucesso!');
       } catch (err) {
         console.error(err);
         triggerToast('Erro ao salvar: ' + (err.message || 'Verifique o console'), 'alert-circle');
