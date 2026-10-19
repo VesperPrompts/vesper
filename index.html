@@ -846,7 +846,7 @@
 
         const hasHowTo = item.howTo && item.howTo.trim().length > 0;
         const isImage = isImageMedia(item);
-        const canManage = Boolean(item.isCloud || item.isLocalFile);
+        const canManage = Boolean(currentUser);
 
         card.innerHTML = `
           <!-- Header do Card -->
