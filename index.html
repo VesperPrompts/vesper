@@ -471,7 +471,7 @@
 
       toastMessage.textContent = text;
       toastIcon.innerHTML = `<i data-lucide="${icon}" class="w-4 h-4"></i>`;
-      lucide.createIcons({ root: toastIcon });
+      lucide.createIcons();
 
       toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
       toast.classList.add('translate-y-0', 'opacity-100');
@@ -620,7 +620,6 @@
       }
     }
 
-    // Função de Excluir Card Completo
     async function deletePromptCard(id, url, isCloud) {
       if (!confirm('Tem a certeza que deseja excluir este prompt e a sua mídia permanentemente?')) {
         return;
@@ -656,7 +655,6 @@
       renderVideos();
     }
 
-    // Função para Abrir o Modal em Modo de Edição
     function editPromptCard(id, isCloud) {
       const item = allVideos.find(v => String(v.id) === String(id));
       if (!item) return;
@@ -681,8 +679,10 @@
       btnSubmitText.textContent = 'Salvar Alterações';
       mediaEditNote.classList.remove('hidden');
 
-      modalIcon.setAttribute('data-lucide', 'pencil');
-      lucide.createIcons({ root: modalIcon.parentElement });
+      if (modalIcon) {
+        modalIcon.setAttribute('data-lucide', 'pencil');
+      }
+      lucide.createIcons();
 
       openModal(videoModal);
     }
@@ -799,7 +799,7 @@
         });
       });
 
-      lucide.createIcons({ root: topicsBar });
+      lucide.createIcons();
     }
 
     let observer;
@@ -866,14 +866,14 @@
               </span>
               ${canManage ? `
                 <button 
-                  onclick="editPromptCard('${item.id}',${Boolean(item.isCloud)})"
+                  onclick="editPromptCard('${item.id}', ${Boolean(item.isCloud)})"
                   title="Editar este prompt / mídia"
                   class="p-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/25 text-emeraldLight border border-emerald-500/20 transition-all"
                 >
                   <i data-lucide="pencil" class="w-3.5 h-3.5"></i>
                 </button>
                 <button 
-                  onclick="deletePromptCard('${item.id}', '${escapeHtml(item.url)}',${Boolean(item.isCloud)})"
+                  onclick="deletePromptCard('${item.id}', '${escapeHtml(item.url)}', ${Boolean(item.isCloud)})"
                   title="Excluir este card"
                   class="p-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/25 text-red-400 hover:text-red-300 border border-red-500/20 transition-all"
                 >
@@ -978,12 +978,12 @@
       const origHtml = btn.innerHTML;
       btn.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i><span>Copiado!</span>`;
       btn.classList.add('brightness-125');
-      lucide.createIcons({ root: btn });
+      lucide.createIcons();
 
       setTimeout(() => {
         btn.innerHTML = origHtml;
         btn.classList.remove('brightness-125');
-        lucide.createIcons({ root: btn });
+        lucide.createIcons();
       }, 1600);
     }
 
@@ -1018,8 +1018,10 @@
       btnSubmitText.textContent = 'Salvar e Publicar';
       mediaEditNote.classList.add('hidden');
 
-      modalIcon.setAttribute('data-lucide', 'folder-up');
-      lucide.createIcons({ root: modalIcon.parentElement });
+      if (modalIcon) {
+        modalIcon.setAttribute('data-lucide', 'folder-up');
+      }
+      lucide.createIcons();
 
       openModal(videoModal);
     });
